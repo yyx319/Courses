@@ -1,0 +1,166 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{lipsum}
+\usepackage{float}
+\newenvironment{figurehere}
+{\def\@captype{figure}}
+{}
+
+\title{ASTR2013 ass4}
+\author{{Yuan Yuxuan  u6772166}}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Problem 1}
+\subsection{}
+%1.1
+(a)
+
+The geometry of this scenario is spherical. We assume the radiation from the star isn't attenuated by opacity. The radiation distribute uniformly through the surface of sphere of radius r, which means the flux of ionizing photons is that
+$$
+f = \frac{Q_*}{4 \pi r^2}
+$$
+
+(b)
+
+Since the flux is f. In a short time period $\Delta t$, the number of ionizing photons crossing H atoms will be 
+$$
+N = f \sigma_{ion} \Delta t
+$$
+where f is the flux of ionizing photon, $\sigma_{ion}$ is the cross section of ionization process.
+
+Hence the rate of photons ionizing H atoms will be:
+$$
+R_{ion} = \frac{N}{\Delta t} = f \sigma = \frac{Q_* \sigma_{\mathrm{ion}}}{4 \pi r^2} 
+$$
+With representative numbers of $\sigma_{\text {ion }}=10^{-18} \mathrm{cm}^{2}$
+$Q_{*}=10^{48}$ ionizing photons $/ \mathrm{s}$ and $r=0.1 \mathrm{pc}$, we get 
+
+$$
+R_{ion} = \frac{10^{48} \cdot 10^{-18} \mathrm{cm}^2}{4\cdot \pi 0.1^2 \mathrm{pc}^2} = 8.36\cdot10^{-7} s^{-1}
+$$
+
+The typical timescale is just the inverse of the ionization rate:
+$$
+\tau_{ion} = \frac{1}{R_{ion}} = 1.20 \cdot 10^6 s
+$$
+
+(c)
+
+For any translation mode of electron's motion, from equi-partition theorem, the kinetic energy for that degree of freedom is $\frac{1}{2} k_B T$. The electron have three translation modes(v$_x$,v$_y$,v$_z$), which tells us:
+$$
+E_k = \frac{1}{2}m_e v^2 = \frac{3}{2} k_B T
+$$
+Hence we could get the velocity of the electrons for a temperature of 7000K.
+$$
+v_e = \sqrt{\frac{3 k_B T}{m_e}} = 5.64\cdot 10^5m/s
+$$
+
+(d)
+
+The recombination timescale is calculated by dividing the mean free path of the recombination process by the velocity of electrons:
+$$
+\tau_{\mathrm{rec}}=\frac{l}{v_{\mathrm{e}}}=\frac{1}{n \sigma_{\mathrm{rec}} \mathrm{v}_{\mathrm{e}}}
+$$
+where $\sigma_{\mathrm{rec}} \approx 10^{-16} cm^2 $ is the recombination cross-section, v is the speed of the electron and $l = \frac{1}{n \sigma_{rec}}$ is the mean free path.
+
+Plug in the numbers we get:
+$$
+\tau_{\mathrm{rec}} = 1.77\cdot10^7s
+$$
+
+(e)
+$r_{strom}$ is determined by the balance between photo-ionization and recombination (via collision). Therefore the typical timescale for recombination and ionization is the same at Stromgren sphere
+$$
+\tau_{\mathrm{rec}} = \tau_{ion}
+$$
+
+$$
+\frac{1}{n \sigma_{\mathrm{rec}} \mathrm{v}_{\mathrm{e}}} = \frac{4 \pi r^2}{Q_* \sigma_{\mathrm{ion}}}
+$$
+from which we could solve that 
+$r = \sqrt{\frac{Q_* \sigma_{ion}}{4 \pi n \sigma_{rec} v_e}} = 0.38pc$
+
+
+
+
+
+
+
+\section{Problem 2}
+
+(a)
+
+We first derive the rotation curve, by balancing the centrifugal force with the gravitation force, we get
+
+$$
+F_g = \frac{GM(<r)m}{r^2} = F_c = \frac{m v^2}{r}
+$$,
+where M(<r) is the mass of the MW within radius r, m is the mass of test object at radius r and v is the circular velocity.
+
+From $$
+\frac{GM(<r)}{r^2} = \frac{v^2}{r}
+$$
+we get
+$$
+M(<r) = \frac{v^2 r}{G} 
+$$
+
+Inside the cutoff radius, the rotation curve is constant $v(r) = v_c$ and there are no mass outside the cutoff radius, so we get the function of mass 
+
+$M(<r) = \frac{v_c^2 r}{G}$ for r<R,
+
+$M(<r) = \frac{v_c^2 R}{G}$ for r>R
+
+and the function of gravity 
+
+$F_g(<r) = -\frac{m v_c^2}{r}$ for r<R,
+
+$F_g(<r) = -\frac{m v_c^2 R}{r^2}$ for r>R
+
+Consider a test object from radius r<R with escape velocity v$_{esc}$ which could escape to infinity. The change in its kinetic energy will be equal to the work done by gravitational energy.
+$$
+\begin{aligned}
+    \Delta E_k = 0 - \frac{1}{2}m v_{esc}^2= W_g = \int_r^R F_g dr + \int_R^{+\infty} F_g dr  \\
+    = -\int_r^R \frac{m v_c^2}{r} dr - \int_R^{+\infty} \frac{m v_c^2 R}{r^2} dr 
+    = -m v_c^2 \ln\frac{R}{r} - m v_c^2
+\end{aligned}
+$$
+    
+
+
+
+From $
+\frac{1}{2}m v_{esc}^2= v_c^2 \ln\frac{R}{r} + v_c^2
+$, we could derive that
+$$
+v_{\mathrm{esc}}^{2}=2 v_{c}^{2}\left(1+\ln \frac{R}{r}\right)
+$$
+
+(b)
+
+Based on this density profile, a value of $v_{c}=220 \mathrm{km} / \mathrm{s}$ a value of $R$ more than 16 $\mathrm{kpc}$, we calculate the mass inside raidus r = 16 kpc. 
+
+From 2(a) we already get the mass inside a radius that is less than the cutoff radius, by plugging in the numbers above, we get 
+$$
+M(<r) = \frac{v_c^2 r}{G} = 1.80 \cdot 10^{11} M_{\mathrm{sun}}
+$$
+
+
+
+
+
+
+
+
+\end{document}
+
+
