@@ -1,0 +1,665 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ass2}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    remember to upload pdf Q1.1a
+
+We can know that E is a elementary matrix. \[
+E=\left[\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & {-\frac{x_3}{x_2}} & 1 & 0\\
+0 & {-\frac{x_4}{x_2}} & 0 & 1
+\end{array}\right]=I-ue_2^{T}
+\]
+
+Hence \[
+ue_2^{T}=\left[\begin{array}{cccc}
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & \frac{x_3}{x_2} & 0 & 0\\
+0 & \frac{x_4}{x_2} & 0 & 0
+\end{array}\right]
+\]
+
+Also, \[
+e_2^{T}=\left[\begin{array}{cccc}
+0 & 1 & 0 & 0\\
+\end{array}\right]
+\] Hence \[u=\left[\begin{array}{cccc}
+0 & 0 & \frac{x_3}{x_2} & \frac{x_4}{x_2}\\
+\end{array}\right]^T\]
+
+    Q1.1b
+
+\[
+I-\alpha e_3e_2^{T}=\left[\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 1-\alpha & 1 & 0\\
+0 & 0 & 0 & 1
+\end{array}\right]
+\]
+
+\[
+I-\beta e_4e_2^{T}=\left[\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 1-\beta & 0 & 1
+\end{array}\right]
+\]
+
+\[
+M=(I-\alpha e_3e_2^{T})(I-\beta e_4e_2^{T})=\left[\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 1-\alpha & 1 & 0\\
+0 & 1-\beta & 0 & 1
+\end{array}\right]
+\]
+
+\(M=I-m_k e_k^T\) where \(m_k=[0\ 0\ \alpha-1\ \beta-1]^T\) so M is a
+elementary matrix.
+
+    Q1.c
+
+\[x=M^{-1}\left[\begin{array}{c}
+0 \\
+4\\
+0\\
+0
+\end{array}\right]=
+\left[\begin{array}{c}
+0 \\
+4\\
+4(\alpha-1)\\
+4(\beta-1)
+\end{array}\right]\]
+
+    Q2.a
+
+\(x^{k+1}-x^*=x^{k}-x^*-\omega A(x^{k}-x^*)=(I-\omega A)(x^k-x^*)\)
+
+\(e^{(k+1)}=Ee^k\)
+
+\(e^k=E^ke^0\), where \(E=I-\omega A\)
+
+The eigenvalues for \(E=I-\omega A\) are
+\(\lambda= 1-\omega ,1-\frac{1}{4}\omega ,1-\frac{1}{9}\omega, 1-\frac{1}{16}\omega\)
+
+In order to make the method convergent \(\rho(E)=max(|\lambda|)<1\)
+
+We need to require \(0<\omega<2\)
+
+When \(\omega=\frac{32}{17}\) \(\rho(E)_{min}=\frac{15}{17}\) The best
+possible value is 32/17
+
+    Q2.b
+
+For Jacobi \(M_J=D\) and \(E_J=I-D^{-1}A\) \[D=\left[\begin{array}{cccc}
+4 & 0 & 0 & 0\\
+0 & 5 & 0 & 0\\
+0 & 0 & 6 & 0\\
+0 & 0 & 0 & 3
+\end{array}\right] \]
+
+\[D^{-1}=\left[\begin{array}{cccc}
+\frac{1}{4} & 0 & 0 & 0\\
+0 & \frac{1}{5} & 0 & 0\\
+0 & 0 & \frac{1}{6} & 0\\
+0 & 0 & 0 & \frac{1}{3}
+\end{array}\right] \]
+
+\[E_J=I-D^{-1}A=\left[\begin{array}{cccc}
+0& \frac{1}{4}  & 0 & 0\\
+\frac{1}{5}  & 0 & \frac{1}{5}  & 0\\
+0 & \frac{1}{6}  & 0 & \frac{1}{6} \\
+0 & 0 & \frac{1}{3}  & 0
+\end{array}\right]
+\]
+
+From the equation \[\begin{aligned}
+    \rho(E_J)& = \rho(D E_J D^{-1}) = \rho((L+U) D^{-1}) \le \|(L+U) D^{-1}\|_1 \\
+    & = \max_{1\le j\le n} \frac{1}{|a_{j,j}|} \sum_{\scriptstyle i=1 \atop \scriptstyle i\ne j}^n |a_{i,j}|.\end{aligned}\]
+
+we know
+\(\rho(E_J)=max\{\frac{1}{4},\frac{2}{5},\frac{1}{3}\}=\frac{2}{5}<1\)
+so converge rate:2/5
+
+    Q3.a
+
+I prove \(d_k^Td_{k+1}=0\)
+
+\[d_k^T d_{k+1}=d_k^T (b- A x_{k+1})=d_k^T (b- A x_{k}-A\alpha_k d_k)
+=d_k^T (b- A x_{k})- d_k^T A (\displaystyle{\frac{d_k^T d_k}{d_k^T A d_k}}) d_k
+=d_k^T d_k - d_k^T A d_k\displaystyle{\frac{d_k^T d_k}{d_k^T A d_k}}
+=d_k^T d_k-d_k^T d_k=0\]
+
+So the direction vectors d\(_k\) and d\(_{k+1}\) are orthogonal.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{}firstly we claculate the eigenvalue of the matrix A, and the ratio of the }
+         \PY{c+c1}{\PYZsh{}maximum eigenvalue and minimum eigenvalue. }
+         \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{n}{linalg} \PY{k}{as} \PY{n}{la}
+         \PY{n}{A}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{n}{w}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{n}{la}\PY{o}{.}\PY{n}{eig}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{w}\PY{p}{)}
+         \PY{n}{k}\PY{o}{=}\PY{n+nb}{max}\PY{p}{(}\PY{n}{w}\PY{p}{)}\PY{o}{/}\PY{n+nb}{min}\PY{p}{(}\PY{n}{w}\PY{p}{)}
+         \PY{n}{k}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[6.86247002 4.79195236 1.67195183 2.67362578]
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} 4.104466337282004
+\end{Verbatim}
+            
+    Q3.b
+
+by defination \(x=[a, b, c, d]^T\)
+\[x^TAx=[a,b,c,d]\left[\begin{array}{cccc}
+2 & -1 & 0 & 0\\
+-1 & 5 & -1  & 0\\
+0 & -1 & 6 & -1 \\
+0 & 0 & -1 & 3
+\end{array}\right]
+\left[\begin{array}{c}
+a \\
+b\\
+c\\
+d
+\end{array}\right]
+=[a,b,c,d]\left[\begin{array}{c}
+2a-b \\
+-a+5b-c\\
+-b+6c-d\\
+-c+3d
+\end{array}\right]
+=a^2+3b^2+4c^2+2d^2+(a-b)^2+(b-c)^2+(c-d)^2>0
+if x\neq 0\] A is positive definite.
+
+Or because the eigenvalues of A are all positive, hence A is positive
+difinite.
+
+By the calculation above, The condition number for A is given by
+\[\kappa(A) = \frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}\approx4.10\]
+The
+\(e^k\leq 2(\frac{\sqrt\kappa-1}{\sqrt\kappa+1})^k e^0\approx 2(0.34)^k e^0\)
+\(2(0.34)^k\) is always less than 1 and convergent.
+
+So this method is convergent.
+
+    Q4.a
+
+f(0)=-2 f(4)=222 f(0)f(4)\textless{}0 hence f(x) has a zero in the
+intervall \([0, 4]\)
+
+    Q4.b
+
+We consider the problem in analytical way and numerical way:
+
+error tolerance achieved when \((b_0-a_0)/2^{n+1}\leq \delta=0.01\) i.e.
+\((4-0)/2^{n+1}\leq 0.01\)
+
+\(n\geq2log_2(10)+1\)
+
+The number of iteration steps required is that \(n\geq 8\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{c+c1}{\PYZsh{}numerical test}
+         \PY{k}{def} \PY{n+nf}{bisect}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} first simple bisection code}
+             \PY{n}{fa}\PY{p}{,} \PY{n}{fb} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{m} \PY{o}{=} \PY{p}{(}\PY{n}{a}\PY{o}{+}\PY{n}{b}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{2.0}
+                 \PY{n}{fm} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{m}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{fa}\PY{o}{*}\PY{n}{fm} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{:}
+                     \PY{n}{b}\PY{p}{,} \PY{n}{fb} \PY{o}{=} \PY{n}{m}\PY{p}{,} \PY{n}{fm}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{a}\PY{p}{,} \PY{n}{fa} \PY{o}{=} \PY{n}{m}\PY{p}{,} \PY{n}{fm}        
+             \PY{k}{return} \PY{p}{(}\PY{n}{a}\PY{o}{+}\PY{n}{b}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{2.0}\PY{p}{,} \PY{p}{(}\PY{n}{b}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{2.0}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{o}{+}\PY{n}{b}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}  \PY{c+c1}{\PYZsh{} output}
+         
+         \PY{n}{f} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{o}{*}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{;} \PY{n}{xex}\PY{o}{=}\PY{l+m+mf}{2.07722}
+         \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{0.0}\PY{p}{;} \PY{n}{b} \PY{o}{=} \PY{l+m+mf}{4.0}\PY{p}{;} \PY{n}{fa}\PY{p}{,} \PY{n}{fb} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{exact solution: }\PY{l+s+si}{\PYZpc{}g}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{xex}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{interval [}\PY{l+s+si}{\PYZpc{}g}\PY{l+s+s2}{,}\PY{l+s+si}{\PYZpc{}g}\PY{l+s+s2}{] contains the zero? }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{fa}\PY{o}{*}\PY{n}{fb} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)} 
+         \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}    
+             \PY{n}{m}\PY{p}{,} \PY{n}{e}\PY{p}{,} \PY{n}{fm} \PY{o}{=} \PY{n}{bisect}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{c+c1}{\PYZsh{} one step}
+             \PY{n}{a} \PY{o}{=} \PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{e}
+             \PY{n}{b} \PY{o}{=} \PY{n}{m}\PY{o}{+}\PY{n}{e}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}6.4g}\PY{l+s+s2}{ iterations: [a,b]=[}\PY{l+s+si}{\PYZpc{}6.4g}\PY{l+s+s2}{,}\PY{l+s+si}{\PYZpc{}6.4g}\PY{l+s+s2}{], x=}\PY{l+s+si}{\PYZpc{}8.5e}\PY{l+s+s2}{, e=}\PY{l+s+si}{\PYZpc{}8.1e}\PY{l+s+s2}{\PYZdq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{k}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{m}\PY{p}{,}\PY{p}{(}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{xex}\PY{p}{)}\PY{p}{)}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+exact solution: 2.07722
+interval [0,4] contains the zero? True
+     0 iterations: [a,b]=[     2,     4], x=3.00000e+00, e= 9.2e-01
+     1 iterations: [a,b]=[     2,     3], x=2.50000e+00, e= 4.2e-01
+     2 iterations: [a,b]=[     2,   2.5], x=2.25000e+00, e= 1.7e-01
+     3 iterations: [a,b]=[     2,  2.25], x=2.12500e+00, e= 4.8e-02
+     4 iterations: [a,b]=[     2, 2.125], x=2.06250e+00, e=-1.5e-02
+     5 iterations: [a,b]=[ 2.062, 2.125], x=2.09375e+00, e= 1.7e-02
+     6 iterations: [a,b]=[ 2.062, 2.094], x=2.07812e+00, e= 9.0e-04
+     7 iterations: [a,b]=[ 2.062, 2.078], x=2.07031e+00, e=-6.9e-03
+     8 iterations: [a,b]=[  2.07, 2.078], x=2.07422e+00, e=-3.0e-03
+     9 iterations: [a,b]=[ 2.074, 2.078], x=2.07617e+00, e=-1.0e-03
+
+    \end{Verbatim}
+
+    We can see that after 8 iterations the error is less than 0.01.
+
+    Q5
+
+If \(F\) is contractive on a real interval \([0,4]\) and
+\(F([0,4]) \subset [0,4]\) then the sequence \(x_n\) defined by fixed
+point iteration with \(F\) converges and the error satisfies
+\[|e_n| \leq \lambda^n |e_0|.\] Then the method is convergent.
+
+\(F(x) = x - \alpha f(x)\) needs to satisfy
+\[|x-y-\alpha(f(x)-f(y))| \leq \lambda |x-y| \]for \(x,y \in [0, 4]\)
+
+\[|1+8\alpha-\alpha(x^2+y^2)(x+y)||x-y|=\lambda |x-y|\leq|x-y|\]
+
+Hence \[|1+8\alpha-\alpha(x^2+y^2)(x+y)|\leq1\]
+
+for \(x,y \in [0, 4]\), \(0<(x^2+y^2)(x+y)<256\)
+
+\(max(|1+8\alpha|,|1-248\alpha|)\leq1\)
+
+So \(\alpha=0\) but \(\alpha\neq0\) so there is no \(\alpha\)
+
+    Q6
+
+\[F(x)=x-\frac{f(x)}{f'(x)}=x-\frac{x^4-8x-2}{4x^3-8}=\frac{3x^4+4}{4x^3-8}\]
+\[F'(x)=\frac{12x^2(x^4-8x-2)}{16(x^3-2)^2}\]
+
+If \(F\) is contractive on a real interval \([a,b]\) and
+\(F([a,b]) \subset [a,b]\) then the sequence \(x_n\) defined by fixed
+point iteration with \(F\) converges and the error satisfies
+\[|e_n| \leq \lambda^n |e_0|.\] Then the method is convergent.
+
+    We first calculate where \(F\) is contractive i.e.
+\(-1\leq F'(x)\leq 1\) We plot F'(x) below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k+kn}{import} \PY{n+nn}{math}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         
+         \PY{n}{Fp}  \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{l+m+mi}{12}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{o}{*}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{16}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{xg}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{500}\PY{p}{)}
+         \PY{n}{Fpxg} \PY{o}{=} \PY{n}{Fp}\PY{p}{(}\PY{n}{xg}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xg}\PY{p}{,}\PY{n}{Fpxg}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{on}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xg}\PY{p}{,}\PY{n}{Fpxg}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{on}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}matplotlib\textbackslash{}cbook\textbackslash{}deprecation.py:107: MatplotlibDeprecationWarning: Passing one of 'on', 'true', 'off', 'false' as a boolean is deprecated; use an actual boolean (True/False) instead.
+  warnings.warn(message, mplDeprecation, stacklevel=1)
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    In the limiting cases \$x \rightarrow \pm \infty \$,
+\(F'(x)\rightarrow \frac{3}{4}\)
+
+Hence from the plot above we know that only the points in \([x_1, x_2]\)
+does not satisfy \(-1\leq F'(x)\leq 1\), where x\(_1\) x\(_2\) are the
+roots of \(F'(x)=-1\)
+
+Calculation from mathematica tells us that the approximate roots is
+0.703 and 1.796
+
+The points in \([0.703, 1.796]\) are not convergent.
+
+    Next we show that the points in \([-\infty, 0.703]\) and
+\([1.796,\infty]\) are convergent.
+
+we will show that \(F(x)= x - f(x)/f^\prime(x)\) maps the two intervals
+into itself
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{f}  \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{4}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{o}{*}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}
+         \PY{n}{fp} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{l+m+mi}{4}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8}
+         \PY{n}{F}  \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{/}\PY{n}{fp}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+         
+         \PY{n}{xg}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{500}\PY{p}{)}
+         \PY{n}{Fxg} \PY{o}{=} \PY{n}{F}\PY{p}{(}\PY{n}{xg}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xg}\PY{p}{,}\PY{n}{Fxg}\PY{p}{,} \PY{n}{xg}\PY{p}{,}\PY{n}{xg}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mf}{0.703}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mf}{0.703}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{on}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xg}\PY{p}{,}\PY{n}{Fxg}\PY{p}{,} \PY{n}{xg}\PY{p}{,}\PY{n}{xg}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.796}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mf}{1.796}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{on}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}matplotlib\textbackslash{}cbook\textbackslash{}deprecation.py:107: MatplotlibDeprecationWarning: Passing one of 'on', 'true', 'off', 'false' as a boolean is deprecated; use an actual boolean (True/False) instead.
+  warnings.warn(message, mplDeprecation, stacklevel=1)
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    So the Newton's method for \(f(x) = x^4 − 8x − 2\) does not converge for
+any point.
+
+The points in \([0.703, 1.796]\) are not convergent.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

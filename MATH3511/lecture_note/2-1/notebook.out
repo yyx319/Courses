@@ -1,0 +1,23 @@
+\BOOKMARK [1][-]{section.1}{2.1 Direct Solvers}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Linear systems of equations Ax = b}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Questions}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Applications}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Algorithms}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.5}{Question:}{section.1}% 6
+\BOOKMARK [2][-]{subsection.1.6}{Elimination by Elementary Operations}{section.1}% 7
+\BOOKMARK [2][-]{subsection.1.7}{Elementary Matrices \(Multipliers\)}{section.1}% 8
+\BOOKMARK [2][-]{subsection.1.8}{Properties of Elementary Matrices}{section.1}% 9
+\BOOKMARK [2][-]{subsection.1.9}{Elementary Matrices -- examples}{section.1}% 10
+\BOOKMARK [2][-]{subsection.1.10}{LU Factorisation using Elementary Matrices}{section.1}% 11
+\BOOKMARK [3][-]{subsubsection.1.10.1}{Algorithm for matrix A =\(a\137\173i,j\175\).}{subsection.1.10}% 12
+\BOOKMARK [2][-]{subsection.1.11}{LU factorisation -- example}{section.1}% 13
+\BOOKMARK [2][-]{subsection.1.12}{Algorithm \(LU factorisation -- pseudo code version\)}{section.1}% 14
+\BOOKMARK [2][-]{subsection.1.13}{Existence and Uniqueness}{section.1}% 15
+\BOOKMARK [2][-]{subsection.1.14}{QR decomposition}{section.1}% 16
+\BOOKMARK [2][-]{subsection.1.15}{Solution using the LU factorisation}{section.1}% 17
+\BOOKMARK [2][-]{subsection.1.16}{Forward Substitution}{section.1}% 18
+\BOOKMARK [2][-]{subsection.1.17}{Backward Substitution}{section.1}% 19
+\BOOKMARK [2][-]{subsection.1.18}{Solving Ly = b while computing LU=A}{section.1}% 20
+\BOOKMARK [2][-]{subsection.1.19}{Example}{section.1}% 21
+\BOOKMARK [2][-]{subsection.1.20}{Algorithm \(Solve linear system by LU factorisation\)}{section.1}% 22
+\BOOKMARK [2][-]{subsection.1.21}{Flops - Gaussian Elimination}{section.1}% 23

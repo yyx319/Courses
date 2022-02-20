@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="quadrature">Quadrature</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> scipy.integrate <span class="im">as</span> sci
+<span class="im">import</span> math <span class="im">as</span> m</code></pre></div>
+<h2 id="integrals">integrals</h2>
+<p><span class="math display">\[\renewcommand{\R}{\mathbb{R}}\]</span></p>
+<ul>
+<li><p>aim: to compute <span class="math display">\[I(f) = \int_a^b f(x)\, dx\]</span> for given <span class="math inline">\(a,b\in \R\)</span> and function <span class="math inline">\(f(x)\)</span></p></li>
+<li>data:
+<ul>
+<li><span class="math inline">\(a,b\)</span> and procedure defining <span class="math inline">\(f(x)\)</span></li>
+<li>data points <span class="math inline">\(a \leq x_0 &lt; \ldots x_n \leq b\)</span> and <span class="math inline">\(y_k = f(x_k)\)</span></li>
+<li>from computations and from observations</li>
+</ul></li>
+<li><p>integral with weight function <span class="math inline">\(\rho(x)\)</span> <span class="math display">\[I = \int_a^b \rho(x) f(x)\, dx\]</span></p></li>
+<li><p>we call the process of computing the integral <strong>quadrature</strong></p></li>
+</ul>
+<p>[https://en.wikipedia.org/wiki/Numerical_integration]</p>
+<h2 id="applications">applications</h2>
+<ul>
+<li>geometric properties like volume, areas or length</li>
+<li>physics: mass energy, total force on an object</li>
+<li>probability: expectation, averages, covariance, cumulative distribution</li>
+<li>decision making: risk</li>
+<li>finance: costs, values, utility</li>
+<li>weather prediction: average rainfall, expected rainfall</li>
+</ul>
+<h2 id="quadrature-in-scientific-computing">quadrature in scientific computing</h2>
+<ul>
+<li>solution of integral and partial differential equations</li>
+<li>solving ordinary differential equations by recasting as integral equations</li>
+</ul>
+<h3 id="history">history</h3>
+<ul>
+<li>Archimedes: area of a circle -- he provides a numerical technique!</li>
+</ul>
+<h2 id="quadrature-and-calculus">quadrature and calculus</h2>
+<ul>
+<li>given continuous <span class="math inline">\(f: [a,b] \rightarrow \R\)</span></li>
+<li>determine any <em>anti-derivative</em> <span class="math inline">\(F(x)\)</span> such that <span class="math display">\[\frac{dF(x)}{dx} = f(x)\]</span></li>
+<li>(second) fundamental theorem of calculus: <span class="math display">\[\int_a^b f(x)\, dx = F(b) - F(a)\]</span>
+<ul>
+<li><p>use this theorem to compute integrals of polynomials, exponential functions, <span class="math inline">\(\sin\)</span> and <span class="math inline">\(\cos\)</span> and many others</p></li>
+<li><p>but for most functions <span class="math inline">\(f\)</span> we don't know <span class="math inline">\(F\)</span></p></li>
+</ul></li>
+</ul>
+<h2 id="two-simple-methods-or-rules">two simple methods (or rules)</h2>
+<ul>
+<li><strong>rectangle rule</strong>
+<ul>
+<li>approximate <span class="math inline">\(f(x)\)</span> by a constant (interpolation) function <span class="math display">\[f(x) \approx p(x) = f(x_0)\]</span></li>
+<li>integrate approximation exactly to get <span class="math display">\[Q(f) = (b-a) f(x_0) \approx I(f) = \int_a^b f(x)\, dx\]</span></li>
+</ul></li>
+<li><strong>trapezoidal rule</strong>
+<ul>
+<li>approximate <span class="math inline">\(f(x)\)</span> by linear interpolant <span class="math display">\[f(x) \approx p(x) = \frac{b-x}{b-a}\, f(a) + \frac{x-a}{b-a}\, f(b)\]</span></li>
+<li>integrate approximation exactly to get <span class="math display">\[Q(f) = \frac{b-a}{2} (f(a) + f(b)) \approx I(f) = \int_a^b f(x)\, dx\]</span></li>
+</ul></li>
+</ul>
+<hr />
+<ul>
+<li><p>these methods by themselves are not too exciting but they form the basis for quite effective methods</p></li>
+<li><p>error <span class="math display">\[Q(f) - I(f) = I(p) - I(f) = I(p-f)\]</span> apply Taylor's remainder theorem for <span class="math inline">\(p-f\)</span></p></li>
+</ul>
+<h2 id="monte-carlo-method">Monte Carlo method</h2>
+<ul>
+<li><p>interprete the integral <span class="math inline">\(I(f)\)</span> as an expectation for a uniform distribution with density <span class="math inline">\(\rho(x) = 1/(b-a)\)</span> over the interval <span class="math inline">\([a,b]\)</span></p></li>
+<li>draw samples <span class="math inline">\(x_k\)</span> from ths interval</li>
+<li><p>approximation of <span class="math inline">\(I(f)\)</span> is then given by the sample mean <span class="math display">\[Q(f) = \frac{b-a}{n} \sum_{i=1}^n f(x_k)\]</span></p></li>
+<li><p>expected squared error can be shown to be bounded by <span class="math inline">\(1/n\)</span> so that the error decreases with <span class="math inline">\(n\)</span> proportional to <span class="math inline">\(1/\sqrt{n}\)</span></p></li>
+</ul>
+<h2 id="quadrature-and-python">Quadrature and Python</h2>
+<ul>
+<li>input: a function <span class="math inline">\(f(x)\)</span> and integration boundaries <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></li>
+<li>output: integral <span class="math inline">\(I(f)\)</span> and indication of accuracy</li>
+<li>handy function in module scipy.integrate: quad</li>
+<li><p>example: <span class="math display">\[I(f) = \int_3^4 \frac{\exp(x)}{(1+x^2)^{-3}}\, dx\]</span></p></li>
+<li><p>python code:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    I <span class="op">=</span> sci.quad(<span class="kw">lambda</span> x : m.exp(x)<span class="op">/</span>(<span class="fl">1.0</span><span class="op">+</span>x<span class="op">*</span>x)<span class="op">**</span><span class="dv">3</span>,<span class="op">\</span>
+                 <span class="fl">3.0</span>, <span class="fl">4.0</span>)
+    <span class="bu">print</span>(<span class="st">&quot;approximation of integral I: </span><span class="sc">{0[0]:3.3g}</span><span class="st">,</span><span class="ch">\n</span><span class="st"> \</span>
+<span class="st">        estimate of error of I: </span><span class="sc">{0[1]:3.3g}</span><span class="st">&quot;</span>.<span class="bu">format</span>(I))</code></pre></div>
+<pre><code>approximation of integral I: 0.0147,
+     estimate of error of I: 1.63e-16</code></pre>
+<h1 id="composite-rules">Composite rules</h1>
+<h2 id="general-construction">General construction</h2>
+<ul>
+<li><p>use a base or component rule <span class="math display">\[q(f; \alpha,\beta) \approx \int_\alpha^\beta f(x)\,dx\]</span></p></li>
+<li><p>define a <em>grid</em> <span class="math display">\[x_0=a &lt; x_1 &lt; \ldots &lt; x_n = b\]</span></p></li>
+<li><p><em>composite rule</em> using <span class="math inline">\(q\)</span> and the <span class="math inline">\(x_k\)</span>: <span class="math display">\[Q(f) = \sum_{k=1}^n q(f; x_{k-1},x_k)\]</span></p></li>
+</ul>
+<h2 id="riemannian-sums">Riemannian sums</h2>
+<ul>
+<li>base rule is the rectangle rule <span class="math display">\[q(f; \alpha,\beta) = (\beta-\alpha)f(\xi)\]</span> where <span class="math inline">\(\xi\)</span> is chosen as a function of <span class="math inline">\(\alpha, \beta\)</span>, 3 typical choices are
+<ul>
+<li><span class="math inline">\(\xi=\alpha\)</span></li>
+<li><span class="math inline">\(\xi=\beta\)</span></li>
+<li><span class="math inline">\(\xi=(\alpha+\beta)/2\)</span> (midpoint rule)</li>
+</ul></li>
+<li><p>we denote by <span class="math inline">\(\overline{x}_k\)</span> the chosen <span class="math inline">\(\xi\)</span> for <span class="math inline">\(\alpha=x_{k-1}\)</span> and <span class="math inline">\(\beta=x_k\)</span></p></li>
+<li><p><strong>Riemannian sum</strong> <span class="math display">\[Q(f) = \sum_{k=1}^n (x_k-x_{k-1})\, f(\overline{x}_k)\]</span></p></li>
+</ul>
+<h2 id="application-of-riemannian-sums">application of Riemannian sums</h2>
+<ul>
+<li>in calculus to define the Riemann integral which is the limit of the Riemannian sum for continuous <span class="math inline">\(f\)</span>
+<ul>
+<li><strong>this is an example where the numerical technique is driving the theory</strong></li>
+</ul></li>
+<li><p>the Riemannian sums are generally not very accurate and not very widely used</p></li>
+<li><p>they are related to the Euler method for solving PDEs and ODEs</p></li>
+<li><p>an exception is if the base rule is the midpoint rule -- this method has the same accuracy as the widely used trapezoidal rule</p></li>
+</ul>
+<h2 id="error-of-rectangular-rule-on-x_k-1x_k">error of rectangular rule on <span class="math inline">\([x_{k-1},x_k]\)</span>:</h2>
+<ul>
+<li><p>component rule <span class="math display">\[q_k(f) = (x_k-x_{k-1}) f(\overline{x}_k)\]</span></p></li>
+<li><p>error <span class="math display">\[e_k(x) = q_k(f) - \int_{x_{k-1}}^{x_k} f(x)\, dx = \int_{x_{k-1}}^{x_k} (f(\overline{x_k}) - f(x))\, dx\]</span></p></li>
+<li><p>assumption: <span class="math inline">\(f\)</span> Lipschitz continuous with Lipschitz constant <span class="math inline">\(M\)</span></p></li>
+</ul>
+<p>Then <span class="math display">\[|e_k(x)| \leq M (x_k - x_{k-1})^2\]</span> as <span class="math inline">\(|\overline{x}_k - x| \leq |x_k - x_{k-1}|\)</span></p>
+<h2 id="error-for-riemannian-sum">error for Riemannian sum</h2>
+<ul>
+<li><p>error = sum of component errors <span class="math display">\[e(x) = \sum_{k-1}^n e_k(x)\]</span></p></li>
+<li><p>include the error bound for the components <span class="math display">\[|e(x)| \leq M \sum_{k=1}^n |x_k - x_{k-1}|^2\]</span></p></li>
+<li><p>use bound <span class="math inline">\(0 \leq x_k - x_{k-1} \leq h\)</span> (define <span class="math inline">\(h\)</span> as maximum) <span class="math display">\[|e(x)| \leq M h \sum_{k=1}^n (x_k - x_{k-1}) = M(b-a)h\]</span></p></li>
+<li><p>one achieves a lower error using the midpoint rule and <span class="math inline">\(C^2\)</span> functions</p></li>
+</ul>
+<h2 id="composite-trapezoidal-rule">(composite) trapezoidal rule</h2>
+<ul>
+<li>the (base) trapezoidal rule</li>
+</ul>
+<p><span class="math display">\[q(f,\alpha,\beta) = (\beta-\alpha)\frac{f(\alpha)+f(\beta)}{2}\]</span></p>
+<ul>
+<li>equals integral <span class="math inline">\(\int_\alpha^\beta p_1(x)\,dx\)</span> where <span class="math inline">\(p_1\)</span> is the linear interpolant</li>
+<li>area of trapzoid under graph of <span class="math inline">\(p_1\)</span></li>
+</ul>
+<p><strong>composite trapezoidal rule for <span class="math inline">\(x_k= a + kh\)</span></strong> <span class="math display">\[T(f) = \sum_{k=1}^n q(f,x_{k-1},q_k) 
+       = h\left(\frac{f(x_0)}{2}+\sum_{k=1}^{n-1} f(x_k)+\frac{f(x_n)}{2}\right)\]</span></p>
+<ul>
+<li>equals the integral <span class="math inline">\(\int_a^b s(x)\, dx\)</span> of the piecewise linear interpolant</li>
+</ul>
+<h2 id="error-of-base-rule">error of base rule</h2>
+<ul>
+<li>error equals the integral of the interpolation error</li>
+</ul>
+<p><span class="math display">\[e = q(f,\alpha,\beta) - \int_\alpha^\beta f(x)\, dx = \int_\alpha^\beta (p_1(x)-f(x))\, dx\]</span></p>
+<ul>
+<li>recall interpolation error formula</li>
+</ul>
+<p><span class="math display">\[p_1(x) - f(x) = -\frac{f^{\prime\prime}(\xi_x)}{2}(x-\alpha)(x-\beta)\]</span></p>
+<ul>
+<li>insert in integral to get</li>
+</ul>
+<p><span class="math display">\[e = \int_\alpha^\beta \frac{(x-\alpha)(\beta-x)}{2} f^{\prime\prime}(\xi_x)\, dx\]</span></p>
+<ul>
+<li>this looks like an expectation ...</li>
+</ul>
+<h2 id="mean-value-theorem-for-integration">mean value theorem for integration</h2>
+<p><strong>Theorem</strong></p>
+<p>If <span class="math inline">\(\rho(x)\)</span> and <span class="math inline">\(f(x)\)</span> continuous and <span class="math inline">\(\rho(x)\geq 0\)</span> then there exists some <span class="math inline">\(\zeta\in[\alpha,\beta]\)</span> such that <span class="math display">\[\int_\alpha^\beta \rho(x) f(x)\, dx = f(\zeta) \int_\alpha^\beta \rho(x)\, dx\]</span></p>
+<ul>
+<li>prove using Riemann sums</li>
+<li>note that the function <span class="math display">\[\frac{\rho(x)}{\int_\alpha^\beta \rho(x)\, dx}\]</span> is a probability density function</li>
+<li>there is also a version for Lebesgue integrals</li>
+</ul>
+<h2 id="error-formula">error formula</h2>
+<ul>
+<li><p>as <span class="math inline">\(f(\xi_x)\)</span> in the error formula is continuous function of <span class="math inline">\(x\)</span> and <span class="math inline">\((x-\alpha)(\beta-x)/2 \geq 0\)</span> one has <span class="math display">\[e = \int_\alpha^\beta \frac{(x-\alpha)(\beta-x)}{2} f(\xi_x)\, dx 
+  = \frac{f^{\prime\prime}(\zeta)}{2} \int_\alpha^\beta (x-\alpha)(\beta-x)\, dx\]</span></p></li>
+<li>compute the integral by transformation <span class="math inline">\(x=\alpha + (\beta-\alpha)t\)</span>
+<ul>
+<li><span class="math inline">\(x-\alpha = (\beta-\alpha)t\)</span></li>
+<li><span class="math inline">\(\beta -x = \beta-\alpha - (x-\alpha) = (\beta-\alpha)(1-t)\)</span></li>
+<li><span class="math inline">\(dx = (\beta-\alpha) dt\)</span> <span class="math display">\[\int_\alpha^\beta (x-\alpha)(\beta-x)\, dx = (\beta-\alpha)^3 \int_0^1 t(1-t)\, dt 
+= \frac{(\beta-\alpha)^3}{6}\]</span></li>
+</ul></li>
+<li><p>final error formula for base rule for some <span class="math inline">\(\zeta\in [\alpha,\beta]\)</span>: <span class="math display">\[e = \frac{(\beta-\alpha)^3}{12} f^{\prime\prime}(\zeta)\]</span></p></li>
+</ul>
+<h2 id="error-formula-for-the-composite-rule----case-of-equidistant-grid">error formula for the composite rule -- case of equidistant grid</h2>
+<ul>
+<li><p>sum the errors of all intervals <span class="math inline">\([x_{k-1},x_k]\)</span>: <span class="math display">\[T(f,h) - I(f) = \sum_{k=1}^n e_k = \frac{h^3}{12} \sum_{k=1}^n f^{\prime\prime}(\zeta_k)\]</span></p></li>
+<li><p>use the mean value theorem for sums of values of continuous functions <span class="math inline">\(g\)</span>: <span class="math display">\[\sum_{k=1}^n g(x_k) = ng(\xi)\]</span> for some <span class="math inline">\(\xi\)</span> in the range of <span class="math inline">\(x_k\)</span></p></li>
+<li><p>final error result: there exists some <span class="math inline">\(\xi\in[a,b]\)</span> such that <span class="math display">\[e = T(f,h) - I(f) = \frac{h^2(b-a)}{12} f^{\prime\prime}(\xi)\]</span></p></li>
+</ul>
+<h2 id="using-riemann-sum-to-get-an-approximate-error-formula">using Riemann sum to get an approximate error formula</h2>
+<ul>
+<li><p>The following sum occurring in the error formula is a Riemann sum <span class="math display">\[h\sum_{k=1}^n f^{\prime\prime}(\zeta_k) = \int_a^b f^{\prime\prime}(x)\, dx + O(h)\]</span> where <span class="math inline">\(O(h)\)</span> stands for the error of the Riemann sum which we know is bounded by <span class="math inline">\(h\)</span> times some constants depending on <span class="math inline">\(f\)</span></p></li>
+<li><p>integrate (fundamental theorem of calculus): <span class="math display">\[h\sum_{k=1}^n f^{\prime\prime}(\zeta_k) = f^\prime(b) - f^\prime(a) + O(h)\]</span></p></li>
+<li><p>insert this in (earlier) error formula to get <span class="math display">\[e = T(f,h) - I(f) = \frac{h^2}{12}(f^\prime(b) - f^\prime(a)) + O(h^3)\]</span></p></li>
+</ul>
+<h2 id="case-of-non-equidistant-grids">case of non-equidistant grids</h2>
+<ul>
+<li><p>sum the errors of all intervals <span class="math inline">\([x_{k-1},x_k]\)</span>: <span class="math display">\[T(f,h) - I(f) = \sum_{k=1}^n e_k = \frac{1}{12} \sum_{k=1}^n (x_k-x_{k-1})^3f^{\prime\prime}(\zeta_k)\]</span></p></li>
+<li><p>let <span class="math inline">\(h= \max_k (x_k-x_{k-1})\)</span> to get with triangle inequality <span class="math display">\[|T(f,h) - I(f)| = \sum_{k=1}^n |e_k| \leq \frac{h^2}{12} \sum_{k=1}^n (x_k-x_{k-1})|f^{\prime\prime}(\zeta_k)|\]</span></p></li>
+<li>if <span class="math inline">\(|f^{\prime\prime}|\)</span> is continuous, we can use the mean value theorem for sums and get</li>
+<li><p>the final error bound <span class="math display">\[|e| = |T(f,h) - I(f)| \leq \frac{h^2(b-a)}{12} |f^{\prime\prime}(\xi)|\]</span></p></li>
+</ul>
+</body>
+</html>

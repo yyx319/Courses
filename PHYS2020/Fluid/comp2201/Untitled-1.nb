@@ -1,0 +1,233 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8285,        223]
+NotebookOptionsPosition[      7535,        202]
+NotebookOutlinePosition[      7877,        217]
+CellTagsIndexPosition[      7834,        214]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"x_", ",", "y_", ",", "t_", ",", "\[Alpha]_", ",", "\[Beta]_"}], 
+    "]"}], "=", 
+   RowBox[{
+    RowBox[{"-", "\[Alpha]"}], " ", 
+    RowBox[{"y", "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "-", 
+          RowBox[{"\[Beta]", "*", 
+           RowBox[{"Sign", "[", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"2", "\[Pi]", " ", "t"}], "]"}], "]"}]}]}], ")"}], "^", 
+        "2"}], "+", 
+       RowBox[{"y", "^", "2"}]}], ")"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"v", "[", 
+    RowBox[{"x_", ",", "y_", ",", "t_", ",", "\[Alpha]_", ",", "\[Beta]_"}], 
+    "]"}], "=", 
+   RowBox[{"\[Alpha]", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"x", "-", 
+       RowBox[{"\[Beta]", "*", 
+        RowBox[{"Sign", "[", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"2", "\[Pi]", " ", "t"}], "]"}], "]"}]}]}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "-", 
+          RowBox[{"\[Beta]", "*", 
+           RowBox[{"Sign", "[", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"2", "\[Pi]", " ", "t"}], "]"}], "]"}]}]}], ")"}], "^", 
+        "2"}], "+", 
+       RowBox[{"y", "^", "2"}]}], ")"}]}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7802945624317603`*^9, 3.7802946075620966`*^9}, {
+   3.7802946464411936`*^9, 3.780294852633004*^9}, 3.7802958536552086`*^9},
+ CellLabel->"In[4]:=",ExpressionUUID->"23361788-f041-4b67-9ea0-57091d76afef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"StreamPlot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", "y", ",", "t", ",", "\[Alpha]", ",", "\[Beta]"}], 
+         "]"}], ",", 
+        RowBox[{"v", "[", 
+         RowBox[{"x", ",", "y", ",", "t", ",", "\[Alpha]", ",", "\[Beta]"}], 
+         "]"}]}], "}"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[Alpha]", "\[Rule]", " ", "1"}], ",", 
+        RowBox[{"\[Beta]", "\[Rule]", "0.4"}]}], "}"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.780295144757137*^9, 3.7802951922013483`*^9}, {
+  3.780295228000653*^9, 3.780295228344702*^9}, {3.7802953715977755`*^9, 
+  3.7802954390245404`*^9}, {3.7802956416289225`*^9, 3.7802957008386946`*^9}, {
+  3.7802957583709393`*^9, 3.7802958251224747`*^9}, {3.7802958722973747`*^9, 
+  3.7802958767375045`*^9}, {3.780295940888049*^9, 3.7802959460113306`*^9}, {
+  3.7802960398255577`*^9, 3.7802961242857914`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"69754087-781f-4786-8122-164a2af3e278"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 2}}, Typeset`size$$ = {360., {173., 179.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$2270$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$2270$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> StreamPlot[
+        ReplaceAll[{
+          $CellContext`u[$CellContext`x, $CellContext`y, $CellContext`t$$, \
+$CellContext`\[Alpha], $CellContext`\[Beta]], 
+          $CellContext`v[$CellContext`x, $CellContext`y, $CellContext`t$$, \
+$CellContext`\[Alpha], $CellContext`\[Beta]]}, {$CellContext`\[Alpha] -> 
+          1, $CellContext`\[Beta] -> 0.4}], {$CellContext`x, -1, 
+         1}, {$CellContext`y, -1, 1}], 
+      "Specifications" :> {{$CellContext`t$$, 0, 2}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {220., 226.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.780295177623308*^9, 3.780295192507495*^9}, {
+   3.780295411011445*^9, 3.7802954397217026`*^9}, {3.780295646267496*^9, 
+   3.780295701595673*^9}, 3.7802957341775784`*^9, {3.7802958156508265`*^9, 
+   3.780295825520439*^9}, 3.7802958790453353`*^9, 3.780295956677845*^9, {
+   3.780296126724272*^9, 3.7802961417600794`*^9}, 3.7802964836502094`*^9, 
+   3.78029663098335*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"b802b8fd-1d34-499d-bff0-c2add7c2e4cd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"X", "=", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "\[Alpha]"}], " ", 
+     RowBox[{"y", "/", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "-", 
+           RowBox[{"\[Beta]", "*", 
+            RowBox[{"Sign", "[", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"2", "\[Pi]", " ", "t"}], "]"}], "]"}]}]}], ")"}], "^", 
+         "2"}], "+", 
+        RowBox[{"y", "^", "2"}]}], ")"}]}]}], ",", "t"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7802962172413445`*^9, 3.7802964395770197`*^9}, {
+  3.7802964870092273`*^9, 3.7802965147849846`*^9}, {3.780296575672233*^9, 
+  3.7802966153641024`*^9}, {3.7802967591776767`*^9, 3.7802968055297747`*^9}, {
+  3.7802968427493114`*^9, 
+  3.7802968445245395`*^9}},ExpressionUUID->"2179309b-d874-4eb2-8232-\
+b804f8ff64f4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "y"}], " ", "\[Alpha]", " ", 
+  RowBox[{"\[Integral]", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{
+      SuperscriptBox["y", "2"], "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"x", "-", 
+         RowBox[{"\[Beta]", " ", 
+          RowBox[{"Sign", "[", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"2", " ", "\[Pi]", " ", "t"}], "]"}], "]"}]}]}], ")"}], 
+       "2"]}]], 
+    RowBox[{"\[DifferentialD]", "t"}]}]}]}]], "Output",
+ CellChangeTimes->{
+  3.780296421214079*^9, 3.780296517515667*^9, 3.780296617626055*^9, {
+   3.7802967844311733`*^9, 3.7802968075493755`*^9}},
+ CellLabel->"Out[2]=",ExpressionUUID->"3b72173d-3a35-44c5-b35f-9363a823d844"]
+}, Open  ]]
+},
+WindowSize->{958, 988},
+WindowMargins->{{Automatic, -18}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1582, 46, 82, "Input",ExpressionUUID->"23361788-f041-4b67-9ea0-57091d76afef"],
+Cell[CellGroupData[{
+Cell[2165, 70, 1356, 32, 66, InheritFromParent,ExpressionUUID->"69754087-781f-4786-8122-164a2af3e278"],
+Cell[3524, 104, 2363, 45, 465, "Output",ExpressionUUID->"b802b8fd-1d34-499d-bff0-c2add7c2e4cd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5924, 154, 873, 23, 45, "Input",ExpressionUUID->"2179309b-d874-4eb2-8232-b804f8ff64f4"],
+Cell[6800, 179, 719, 20, 60, "Output",ExpressionUUID->"3b72173d-3a35-44c5-b35f-9363a823d844"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

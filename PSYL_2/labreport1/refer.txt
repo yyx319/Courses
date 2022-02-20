@@ -1,0 +1,3 @@
+https://mathematica.stackexchange.com/questions/136204/basins-of-attraction-for-the-duffing-equation-with-no-forcing-term
+
+http://www.cfm.brown.edu/people/dobrush/am34/Mathematica/ch3/duffing.html

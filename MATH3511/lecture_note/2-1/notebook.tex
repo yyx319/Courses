@@ -1,0 +1,996 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{DirectSolvers}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{2.1 Direct Solvers}\label{direct-solvers}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{as} \PY{n+nn}{la}
+\end{Verbatim}
+
+
+    \subsection{\texorpdfstring{Linear systems of equations
+\(Ax = b\)}{Linear systems of equations Ax = b}}\label{linear-systems-of-equations-ax-b}
+
+\[\renewcommand{\R}{\mathbb{R}}\]
+
+\[\begin{aligned}
+    A = \left[\begin{array}{ccccc}
+    a_{1,1} & a_{1,2} & \cdots & a_{1,n}\\
+    a_{2,1} & a_{2,2} & \cdots & a_{2,n}\\
+    \vdots  & \vdots  & \vdots & \vdots\\
+    a_{n,1} & a_{n,2} & \cdots & a_{n,n}
+    \end{array}\right],
+    \quad x = \left[\begin{array}{cccc}
+    x_1\\
+    x_2\\
+    \vdots\\
+    x_n
+    \end{array}\right],
+    \quad b = \left[\begin{array}{ccccc}
+    b_1\\
+    b_2\\
+    \vdots\\
+    b_n
+    \end{array}\right]\end{aligned}\]
+
+\begin{itemize}
+\tightlist
+\item
+  known \(A\in \R^{n,n}\) and \(b\in\R^n\)
+\item
+  \(A\) \emph{invertible}, i.e., inverse \(A^{-1}\in\R^{n,n}\) exists
+\item
+  unknown \(x\in \R^n\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\[\begin{aligned}
+    a_{1,1} x_1 + a_{1,2} x_2 + \cdots + a_{1,n} x_n & = b_1\\
+    a_{2,1} x_1 + a_{2,2} x_2 + \cdots + a_{2,n} x_n & = b_2\\
+    \vdots \qquad\qquad \quad &\\
+    a_{n,1} x_1 + a_{n,2} x_2 + \cdots + a_{n,n} x_n & = b_n\end{aligned}\]
+
+    \subsection{Questions}\label{questions}
+
+\begin{itemize}
+\tightlist
+\item
+  Find examples of invertible matrices
+\item
+  Find examples of not-invertible (singular) matrices
+\item
+  Discuss invertibility and solution of \(Ax=0\)
+\item
+  What is geometric interpretation of determinant \(\det(A)\) and
+  application to systems of equations
+\item
+  Discuss systems \(Ax=b\) with non-square matrix \(A\)
+\end{itemize}
+
+\textbf{Think about the questions. Write down answers. Discuss with
+colleagues. Assess your answers. Find your own questions.}
+
+    \subsection{Applications}\label{applications}
+
+\begin{itemize}
+\item
+  Linear systems appear in many applications:
+
+  \begin{itemize}
+  \item
+    Regression by least squares method in statistics
+  \item
+    Linear programming in optimization
+  \item
+    Numerical solutions of ordinary differential equations
+  \item
+    Numerical solutions of partial differential equations
+  \item
+    Solving nonlinear equations by linearization
+  \item
+    \(\cdots\)
+  \end{itemize}
+\item
+  The size of \(A x =b\) is usually huge in applications such that it is
+  not possible to solve "by hand"
+\item
+  Need to develop algorithms to let computer do the job.
+\end{itemize}
+
+    \subsection{Algorithms}\label{algorithms}
+
+\begin{itemize}
+\item
+  The algorithms for solving linear systems fall into two categories:
+
+  \begin{itemize}
+  \item
+    Direct methods
+  \item
+    Iterative methods
+  \end{itemize}
+\item
+  Direct methods produce (exact) solution using a finite number of
+  arithmetic operations
+\item
+  Most common method: Gaussian elimination
+\item
+  Basic idea: Reduce system \(Ax=b\) to equivalent \(Ux=y\) where \(U\)
+  is upper triangular
+\item
+  We will see: Gaussian elimination leads to matrix factorisation
+  \(A=LU\) where \(L\) is lower triangular
+\end{itemize}
+
+\textbf{Question:} Write down examples of upper and lower triangular
+matrices.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{itemize}
+\item
+  If we know \(A=LU\), we can solve two systems to get solution of
+  \(Ax=b\) \[Ly = b, \quad \text{and} \quad Ux = y\]
+\item
+  Gaussian elimination can break down and LU factorisation may not
+  exist, use factorisation \[A = PLU\] with permutation matrix \(P\)
+\item
+  Alternative: QR factorisation \(A=QR\), with upper triangular \(R\)
+  and orthogonal \(Q\)
+\end{itemize}
+
+\textbf{Questions:}
+
+\begin{itemize}
+\tightlist
+\item
+  Show that \(Ax=b\) if \(Ly=b\) and \(Ux=y\) and \(A=LU\)
+\item
+  How would you solve \(Qy=b\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Solving linear systems in Python}
+        
+        \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{33}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{x} \PY{o}{=} \PY{n}{la}\PY{o}{.}\PY{n}{solve}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{np}\PY{o}{.}\PY{n}{allclose}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+A =  [[2 3]
+ [5 9]] 
+
+b =  [12 33] 
+
+x =  [3. 2.] 
+
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} True
+\end{Verbatim}
+            
+    \subsection{Question:}\label{question}
+
+\emph{Check the documentation of numpy.linalg.solve. Can you find out
+what method is used? The following code determines the LU factorisation
+with partial pivoting. Try this out. Can you find examples where no LU
+factorisation exists but where the code below till gives a solution?}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Solving linear systems of equations in Python}
+        \PY{c+c1}{\PYZsh{} good for solving system with same A and different b}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{as} \PY{n+nn}{la}
+        
+        \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+        \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{33}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{lu}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{la}\PY{o}{.}\PY{n}{lu\PYZus{}factor}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{n}{la}\PY{o}{.}\PY{n}{lu\PYZus{}solve}\PY{p}{(}\PY{p}{(}\PY{n}{lu}\PY{p}{,}\PY{n}{p}\PY{p}{)}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+        
+        \PY{n}{np}\PY{o}{.}\PY{n}{allclose}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} True
+\end{Verbatim}
+            
+    \subsection{Elimination by Elementary
+Operations}\label{elimination-by-elementary-operations}
+
+\begin{itemize}
+\item
+  We will use combinations of three types of elementary row operations:
+
+  \begin{itemize}
+  \item
+    adding a multiple of one row to another row
+  \item
+    swapping two rows
+  \item
+    multiplying a row by a non-zero number
+  \end{itemize}
+\end{itemize}
+
+Convert \(a=[a_1, a_2, a_3, a_4]^T\) with \(a_2\ne 0\) into
+\([a_1, a_2, 0, 0]^T\) by
+
+\begin{itemize}
+\item
+  multiplying the second row by \(-\frac{a_3}{a_2}\) and adding to the
+  third row;
+\item
+  multiplying the second row by \(-\frac{a_4}{a_2}\) and adding to the
+  fourth row.
+\end{itemize}
+
+\[\left[\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & {-\frac{a_3}{a_2}} & 1 & 0\\
+0 & {-\frac{a_4}{a_2}} & 0 & 1
+\end{array}\right]
+\left[\begin{array}{cccc}
+a_1\\
+a_2\\
+a_3\\
+a_4
+\end{array}\right]=\left[\begin{array}{cccc}
+a_1\\
+a_2\\
+0\\
+0
+\end{array}\right]\]
+
+\textbf{Question:} What are the matrices of the other two elementary
+operations (row swapping and scaling)?
+
+    \subsection{Elementary Matrices
+(Multipliers)}\label{elementary-matrices-multipliers}
+
+\begin{itemize}
+\tightlist
+\item
+  vector \(a = [a_1, a_2, \cdots, a_n]^T\) with \(a_k\ne 0\)
+\item
+  action of elementary matrix \[E_k a=\left[\begin{array}{cccccc}
+  1&\cdots&0&0&\cdots&0\\
+  \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+  0&\cdots&1&0&\cdots&0\\
+  0&\cdots&{-m_{k+1}}&1&\cdots&0\\
+  \vdots&&\vdots&\vdots&\ddots&\vdots\\
+  0&\cdots&{-m_n}&0&\cdots&1
+  \end{array}\right]\left[
+  \begin{array}{c}a_1\\\vdots\\a_k\\a_{k+1}\\\vdots\\a_n\end{array}\right]
+  =\left[\begin{array}{c}
+  a_1\\\vdots\\a_k\\0\\\vdots\\0\end{array}\right]\]
+\item
+  \(E_k\) is designed to nullify all of the elements below \(a_k\) in
+  \(a\), and \(m_j = \frac{a_j}{a_k}\)
+\end{itemize}
+
+    \subsection{Properties of Elementary
+Matrices}\label{properties-of-elementary-matrices}
+
+Let \(e_k\) denote the column vector with \(1\) on spot \(k\) and \(0\)
+elsewhere.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(E_k\) is lower triangular with unit main diagonal.
+\item
+  \(E_k=I-m_k e_k^T\), where
+  \(m_k=[0\ \cdots\ 0\ m_{k+1}\ \cdots\ m_n]^T\).
+\item
+  \(E_k^{-1}=I + m_ke_k^T\) ~(\(E_k^{-1}\) will be denoted by \(L_k\)).
+\item
+  If \(k < j\) then \(E_k E_j=I-m_ke_k^T-m_je_j^T\).
+\item
+  \(E_1E_2\cdots E_{n-1}=I-\sum_{k=1}^{n-1}m_ke_k^T\qquad\) -- lower
+  triangular matrix.
+\end{enumerate}
+
+The first two items are obvious. For the third item, use \(e_k^T m_k=0\)
+and \[\begin{aligned}
+\left(I-m_k e_k^T\right) \left(I+ m_k e_k^T\right)
+&= I -\left(m_k e_k^T\right)\left( m_k e_k^T\right)\\
+&= I -m_k \left(e_k^T m_k\right) e_k^T = I.\end{aligned}\] The last two
+items can be checked by using \(e_k^T m_j=0\) for \(k< j\).
+
+    \subsection{Elementary Matrices -\/-
+examples}\label{elementary-matrices----examples}
+
+Given \(a = [ 2 \ \ \ 4 \ -\!2]^T\), we have \[\begin{aligned}
+E_1 a &= \left[\begin{array}{rrr}
+1&0&0\\
+-2&1&0\\
+1&0&1
+\end{array}\right] \left[\begin{array}{r}2\\4\\-2\end{array}\right]
+=\left[\begin{array}{r}2\\0\\0\end{array}\right], \\
+E_2 a &= \left[\begin{array}{rrr}
+1&0&0\\
+0&1&0\\
+0&\frac{1}{2}&1
+\end{array}\right]\left[\begin{array}{r}2\\4\\-2\end{array}\right]
+=\left[\begin{array}{r}2\\4\\0\end{array}\right], \\
+L_1 &=E_1^{-1}=\left[\begin{array}{rrr}
+1&0&0\\
+2&1&0\\
+-1&0&1
+\end{array}\right],\\
+L_2 &=E_2^{-1}=\left[\begin{array}{rrr}
+1&0&0\\
+0&1&0\\
+0&-\frac{1}{2}&1
+\end{array}\right] .\end{aligned}\]
+
+    \subsection{LU Factorisation using Elementary
+Matrices}\label{lu-factorisation-using-elementary-matrices}
+
+\subsubsection{\texorpdfstring{Algorithm for matrix
+\(A =(a_{i,j})\).}{Algorithm for matrix A =(a\_\{i,j\}).}}\label{algorithm-for-matrix-a-a_ij.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Gaussian elimination first column of \(A\) to make elements below
+  \(a_{1,1}\) zero
+\item
+  Gaussian elimination on second column to make elements below
+  \(a_{2,2}\) zero
+\item
+  continue this procedure until last column
+\end{enumerate}
+
+This leads to \(E_{n-1}\cdots E_2E_1 A=U\) and
+
+\[\begin{aligned}
+A & = & E_1^{-1}E_2^{-1}\cdots E_{n-1}^{-1}U\\
+  & = &L_1L_2\cdots L_{n-1}U\\
+  & = &LU.\end{aligned}\]
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\(L\) can be obtained easily once \(E_1, \cdots, E_{n-1}\) are
+available. Indeed \[\begin{aligned}
+& E_k = \left[\begin{array}{cccccc}
+1&\cdots&0&0&\cdots&0\\
+\vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+0&\cdots&1&0&\cdots&0\\
+0&\cdots&-l_{k+1, k}&1&\cdots&0\\
+\vdots&&\vdots&\vdots&\ddots&\vdots\\
+0&\cdots&-l_{n,k}&0&\cdots&1
+\end{array}\right]\\
+& \Longrightarrow L_k = E_k^{-1} =\left[\begin{array}{cccccc}
+1&\cdots&0&0&\cdots&0\\
+\vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+0&\cdots&1&0&\cdots&0\\
+0&\cdots&l_{k+1,k}&1&\cdots&0\\
+\vdots&&\vdots&\vdots&\ddots&\vdots\\
+0&\cdots&l_{n,k}&0&\cdots&1
+\end{array}\right]\end{aligned}\]
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \[\begin{aligned}
+\Longrightarrow L = L_1 L_2 \cdots L_{n-1} = \left[\begin{array}{cccccc}
+1&   &  &   &   \\
+l_{2,1} & 1 &    & &\\
+\vdots & l_{3,2} & \ddots &\\
+\vdots       & \vdots      &    \ddots    &   1 &  \\
+l_{n,1} & l_{n,2} & \cdots & l_{n,n-1} & 1
+\end{array}\right]\end{aligned}\]
+
+Hence \(L\) is a lower triangular matrix with unit main diagonal.
+
+    \subsection{LU factorisation -\/-
+example}\label{lu-factorisation----example}
+
+Consider the matrix
+\[A = \left[\begin{array}{rrr}2&4&-2\\4&9&-3\\-2&-3&7\end{array}\right].\]
+
+We have \[\begin{aligned}
+E_1 A &=\left[\begin{array}{rrr}
+1&0&0\\
+{-2} & 1 & 0\\
+{1} &  0 & 1
+\end{array} \right] \left[\begin{array}{rrr}2&4&-2\\4&9&-3\\-2&-3&7\end{array}
+\right]=\left[\begin{array}{rrr}2&4&-2\\0&1&1\\0&1&5\end{array}
+\right].\end{aligned}\]
+
+\[\begin{aligned}
+E_2 E_1 A&=\left[\begin{array}{rrr}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 &{-1} & 1
+\end{array} \right]\left[\begin{array}{rrr}2&4&-2\\0&1&1\\0&1&5\end{array}
+\right]=\left[\begin{array}{rrr}2&4&-2\\0&1&1\\0&0&4\end{array}
+\right] = U.\end{aligned}\]
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Therefore, we obtain the LU Factorisation \(A = L U\), where
+\[L=L_1 L_2 = E_1^{-1} E_2^{-1} =
+\left[\begin{array}{rrr}1&0&0\\2&1&0\\-1&0&1\end{array}\right]
+\left[\begin{array}{rrr}1&0&0\\0&1&0\\0&1&1\end{array}\right]
+=\left[\begin{array}{rrr}
+1 & 0 & 0\\
+{2} & 1 & 0\\
+{-1} & {1} & 1\end{array}\right].\]
+
+    \subsection{Algorithm (LU factorisation -\/- pseudo code
+version)}\label{algorithm-lu-factorisation----pseudo-code-version}
+
+\begin{verbatim}
+L = I
+for k=1:n-1
+  for i=k+1:n
+    L(i,k) = A(i,k)/A(k,k)
+    A(i,k) = 0.0
+    for j=k+1:n
+       A(i,j)=A(i,j)-L(i,k)*A(k,j)
+
+U = A
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Algorithm (LU factorisation \PYZhy{}\PYZhy{} Python version)}
+        \PY{c+c1}{\PYZsh{}\PYZsh{} deals with exact breakdown and non\PYZhy{}square A}
+        
+        \PY{k}{def} \PY{n+nf}{LU}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{p}{:}
+            \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{shape}
+            \PY{n}{s} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)}
+            \PY{n}{L} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{n}{U} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{s}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{p}{(}\PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{p}{,}\PY{n}{k}\PY{p}{]}\PY{o}{!=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{L}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{p}{]}\PY{o}{/}\PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{p}{,}\PY{n}{k}\PY{p}{]}  \PY{c+c1}{\PYZsh{} multipliers}
+                \PY{k}{elif} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{} zero pivot}
+                    \PY{k}{raise} \PY{n+ne}{RuntimeError}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LU breakdown}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{outer}\PY{p}{(}\PY{n}{L}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{p}{]}\PY{p}{,}\PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{p}{,}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+                \PY{n}{U}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+            
+            \PY{k}{return} \PY{n}{L}\PY{p}{,} \PY{n}{U}
+\end{Verbatim}
+
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,} \PY{l+m+mf}{4.0}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,} \PY{l+m+mf}{5.0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}A = np.array(((0.0, 1.0), (1.0, 0.0)))  \PYZsh{} implement partial pivoting ...}
+        \PY{c+c1}{\PYZsh{}A = np.array(((0.0, 0.0), (0.0, 0.0)))  \PYZsh{} no elimination required for Aik = 0}
+        \PY{c+c1}{\PYZsh{}A = np.ones((3,2))}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+        \PY{n}{L}\PY{p}{,} \PY{n}{U} \PY{o}{=} \PY{n}{LU}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{L}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{U}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[3. 4. 6.]
+ [3. 5. 2.]
+ [3. 1. 4.]]
+[[ 1.  0.  0.]
+ [ 1.  1.  0.]
+ [ 1. -3.  1.]]
+[[  3.   4.   6.]
+ [  0.   1.  -4.]
+ [  0.   0. -14.]]
+
+    \end{Verbatim}
+
+    \subsection{Existence and Uniqueness}\label{existence-and-uniqueness}
+
+\begin{itemize}
+\item
+  \(\left[\begin{array}{ccc} 0 & 1\\ 1 & 0 \end{array}\right]\) does not
+  have an LU factorisation
+\item
+  Let \(A^r\) be \(r \times r\) submatrix with first \(r\) rows and
+  columns of \(A\).
+\item
+  The \(r\)-th \textbf{principle minor} of \(A\) is the determinant
+  \(\det(A^r)\).
+\item
+  \textbf{existence of \(LU\) factorisation}: if first \(n-1\) principle
+  subminors of \(A\) do not vanish then the LU factorisation \(A=LU\)
+  exists and is unique
+\item
+  Every symmetric positive definite matrix has LU factorisation.
+\item
+  Proof: By induction or by constructing the elimination process and
+  observing that the process may be continued as long as the pivots are
+  non-zero. The pivots will be non-zero since the product of the first
+  \(j\) pivots is equal to \(\det(A^j) \ne 0\).
+\end{itemize}
+
+    \subsection{QR decomposition}\label{qr-decomposition}
+
+\begin{itemize}
+\item
+  The QR decomposition also uses an elimination process and (in this
+  case orthogonal) elmentary matrices. The most commonly used matrices
+  are reflections or Householder matrices of the form
+  \(H = I - 2 u u^T\) where \(u\) have length one.
+\item
+  Rotation (Givens or Jacobi) matrices are also used and even the
+  Gram-Schmidt process can be implemented numerically.
+\end{itemize}
+
+    \subsection{Solution using the LU
+factorisation}\label{solution-using-the-lu-factorisation}
+
+\begin{itemize}
+\item
+  Let \(A=LU\) with \[L = \left[\begin{array}{cccccc}
+  l_{1,1} &   &  &     \\
+  l_{2,1} & l_{2,2} &     &\\
+  \vdots       & \vdots      &    \ddots      &\\
+  l_{n,1} & l_{n,2} & \cdots  & l_{n,n}
+  \end{array}\right], \quad
+  U = \left[ \begin{array}{cccccc}
+  u_{1,1} & u_{1,2} & \cdots & u_{1,n} \\
+      & u_{2,2} & \cdots & u_{2,n} \\
+      &         & \ddots &  \vdots \\
+      &         &        & u_{n,n}
+  \end{array}\right].\]
+\item
+  Solving \(Ax=b\) in 2 steps:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    Solve the lower triangular system \(Ly =b\) for \(y\) by forward
+    substitution.
+  \item
+    Solve the upper triangular system \(U x = y\) for \(x\) by back
+    substitution.
+  \end{enumerate}
+\end{itemize}
+
+    \subsection{Forward Substitution}\label{forward-substitution}
+
+The lower triangular system \(L y =b\) takes the form \[\begin{aligned}
+\begin{array}{ccccccc}
+l_{1,1}y_1 & &           &         &          & =&  b_1    \\
+l_{2,1}y_1 &+&l_{2,2}y_2    &         &          & =&  b_2    \\
+\vdots     & &\vdots     & \ddots  &          & =&  \vdots \\
+l_{n,1}y_1 &+&l_{n,2}y_2 &+ \ldots +&l_{n,n}y_n&    =& b_n
+\end{array}\end{aligned}\] By the first equation we can obtain
+\[y_1 = \frac{b_1}{l_{1,1}}.\] Inductively, the solution is given by
+\[y_i = {{b_i - \sum_{k=1}^{i-1} l_{i,k} y_k } \over l_{i,i}}, \quad
+i = 1, 2, \ldots , n.\]
+
+    \subsection{Backward Substitution}\label{backward-substitution}
+
+The upper triangular system \(Ux = y\) takes the form
+\[\begin{array}{ccccccc}
+u_{1,1}x_1 &+&u_{1,2}x_2  &+ \ldots +&u_{1,n}x_n  &=  &y_1 \\
+           & &u_{2,2}x_2  &+ \ldots +&u_{2,n}x_n  &=  &y_2 \\
+           & &            & \ddots   & \vdots   &\vdots &\vdots \\
+           & &            &          &  u_{n,n}x_n&=   &y_n
+\end{array}\] By the last equation we obtain
+\[x_n = { y_n \over u_{n,n}}.\] Inductively, the solution \(x\) is given
+by \[x_i = {{y_i - \sum_{k=i+1}^n u_{i,k} x_k } \over u_{i,i}}, \quad
+ i = n, n-1,..., 1.\]
+
+    \subsection{\texorpdfstring{Solving \(Ly = b\) while computing
+\(LU=A\)}{Solving Ly = b while computing LU=A}}\label{solving-ly-b-while-computing-lua}
+
+\begin{itemize}
+\tightlist
+\item
+  forward substitution can be done simultaneously as LU factorisation:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    factorise the augmented matrix \([A\ \ b]\)
+    \[\begin{aligned} E_{n-1}\dots E_1 [A \ \ b] &= 
+    [E_{n-1} \dots E_1 A \ \ E_{n-1}\dots E_1 b] \\
+    &= [U \ \ L^{-1} b] \\ &= [U \ \ y].\end{aligned}\]
+  \end{itemize}
+\end{itemize}
+
+    \subsection{Example}\label{example}
+
+Consider the linear system \(A x =b\) where
+\[A = \left[\begin{array}{rrrr}
+1  &  3  & 1 \\
+1  & -2  & -1\\
+2  & 1  & 2
+\end{array}\right], \quad
+b = \left[ \begin{array}{rrrr}
+10\\ -6 \\ 10\\
+\end{array}\right].\] We work on the augmented matrix \([A \ \ b]\).
+Then \[\begin{aligned}
+E_1 [A \ \ b]\! &= \!\!\left[\begin{array}{rrrr}
+1 & 0 & 0\\
+-1 & 1 & 0 \\
+-2 & 0 & 1
+\end{array}\right] \left[\begin{array}{rrrr}
+1  &  3  & 1 & 10\\
+1  & -2  & -1 & -6\\
+2  & 1  & 2  &  10
+\end{array}\right]
+\!\!=\!\! \left[\begin{array}{rrrr}
+1  &  3  & 1 & 10\\
+0  & -5  & -2 & -16\\
+0  & -5  &  0 & -10
+\end{array}\right],\end{aligned}\]
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\[\begin{aligned}
+E_2 E_1 [A \ \ b] & = \left[\begin{array}{rrrr}
+1 & 0 & 0\\
+0 & 1 & 0 \\
+0 & -1 & 1
+\end{array}\right] \left[\begin{array}{rrrr}
+1  &  3  & 1 & 10\\
+0  & -5  & -2 & -16\\
+0  & -5  & 0  &  -10
+\end{array}\right]\\
+&= \left[\begin{array}{rrrr}
+1  &  3  & 1 & 10\\
+0  & -5  & -2 & -16\\
+0  & 0  &  2 & 6
+\end{array}\right].\end{aligned}\]
+
+By back substitution we obtain the solution
+
+\[\begin{bmatrix} x_1\\x_2\\x_3 \end{bmatrix} = \begin{bmatrix} 1\\2\\3 \end{bmatrix}.\]
+
+\subsection{Algorithm (Solve linear system by LU
+factorisation)}\label{algorithm-solve-linear-system-by-lu-factorisation}
+
+\begin{verbatim}
+M = [A  b]
+for k=1:n-1
+  for i=k+1:n
+     q = M(i,k)/M(k,k)
+     for j = k:n+1
+        M(i,j) = M(i, j) - q*M(k,j)
+     end
+  end
+end
+x(n) = M(n,n+1)/M(n,n)
+for i = n-1:-1:1
+   z = 0
+   for j = i+1:n
+      z = z + M(i,j)*x(j)
+   end
+   x(i) = (M(i,n+1)-z)/M(i,i)
+end
+\end{verbatim}
+
+\subsection{Flops - Gaussian
+Elimination}\label{flops---gaussian-elimination}
+
+The most expensive part of the algorithm on LU factorisation involves
+the row operations which can be written as three nested for loops
+
+\begin{verbatim}
+L = I
+for k=1:n-1
+  for i=k+1:n
+    L(i,k) = A(i,k)/A(k,k)
+    A(i,k) = 0.0
+    for j=k+1:n
+       A(i,j)=A(i,j)-L(i,k)*A(k,j)
+
+U = A
+\end{verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

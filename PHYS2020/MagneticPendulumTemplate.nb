@@ -1,0 +1,826 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     33538,        817]
+NotebookOptionsPosition[     32761,        786]
+NotebookOutlinePosition[     33214,        804]
+CellTagsIndexPosition[     33171,        801]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Magnetic Pendulum", "Title",
+ CellChangeTimes->{{3.603743730719821*^9, 3.6037437636639833`*^9}, {
+  3.60374390445081*^9, 3.6037439073908463`*^9}, {3.603744347739382*^9, 
+  3.60374434853172*^9}, {3.603744382754343*^9, 3.60374438404949*^9}, {
+  3.604006259325069*^9, 3.604006261522812*^9}}],
+
+Cell["\<\
+A common desk toy is a magnetic pendulum in which a magnet attached to the \
+end of a pendulum oscillates over a plane where three attractive magnets are \
+present. By varying the initial position, friction of the system, and magnet \
+position, the final state of each trajectory can be altered.
+   
+Here we give you pre - written code to play with this system.  What can you \
+say about how the system behaves?\
+\>", "Text",
+ CellChangeTimes->{{3.603744698661425*^9, 3.603744883170473*^9}, {
+  3.604001154611598*^9, 3.604001155696864*^9}, {3.604006249887168*^9, 
+  3.6040062901088877`*^9}, {3.6040064259202967`*^9, 3.604006428174975*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Templates for making plots:", "Subtitle",
+ CellChangeTimes->{{3.41599703172396*^9, 3.415997059682042*^9}, 
+   3.415997114484988*^9, 3.415997146373543*^9, {3.415997484978815*^9, 
+   3.415997504688641*^9}, {3.416001955308617*^9, 3.416001959568941*^9}, {
+   3.424481933758943*^9, 3.424481945645804*^9}, {3.603744319581213*^9, 
+   3.603744345604001*^9}, {3.603744907674994*^9, 3.6037449172329197`*^9}}],
+
+Cell["\<\
+Perhaps you wish to simply plot the behaviour as a function of time\
+\>", "Text",
+ CellChangeTimes->{{3.416006200791356*^9, 3.41600620913227*^9}, {
+  3.416007587864752*^9, 3.4160076132823668`*^9}, {3.416010557720748*^9, 
+  3.4160105774598494`*^9}, {3.4217194488398743`*^9, 3.4217194846360903`*^9}, {
+  3.603744921504588*^9, 3.60374493723936*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"xMag", ",", "yMag", ",", "system"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"xMag", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"A", " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"i", "*", 
+            FractionBox[
+             RowBox[{"2", "\[Pi]"}], "NMag"]}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "NMag"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"yMag", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"A", " ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"i", "*", 
+            FractionBox[
+             RowBox[{"2", "\[Pi]"}], "NMag"]}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "NMag"}], "}"}]}], "]"}]}], ";", " ", 
+      RowBox[{"system", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"x", "''"}], "[", "t", "]"}], "+", " ", 
+           RowBox[{"R", " ", 
+            RowBox[{
+             RowBox[{"x", "'"}], "[", "t", "]"}]}], "-", 
+           RowBox[{"Sum", "[", 
+            RowBox[{
+             FractionBox[
+              RowBox[{" ", 
+               RowBox[{
+                RowBox[{"xMag", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "-", 
+                RowBox[{"x", "[", "t", "]"}]}]}], 
+              SuperscriptBox[
+               RowBox[{"(", 
+                SqrtBox[
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"xMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"x", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"yMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"y", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox["d", "2"]}]], ")"}], "3"]], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "1", ",", " ", "NMag"}], "}"}]}], "]"}], 
+           "+", 
+           RowBox[{"C1", " ", 
+            RowBox[{"x", "[", "t", "]"}]}]}], "\[Equal]", "0"}], ",", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"y", "''"}], "[", "t", "]"}], "+", " ", 
+           RowBox[{"R", " ", 
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "t", "]"}]}], "-", 
+           RowBox[{"Sum", "[", 
+            RowBox[{
+             FractionBox[
+              RowBox[{
+               RowBox[{"yMag", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "-", 
+               RowBox[{"y", "[", "t", "]"}]}], 
+              SuperscriptBox[
+               RowBox[{"(", 
+                SqrtBox[
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"xMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"x", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"yMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"y", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox["d", "2"]}]], ")"}], "3"]], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "1", ",", " ", "NMag"}], "}"}]}], "]"}], 
+           "+", 
+           RowBox[{"C1", " ", 
+            RowBox[{"y", "[", "t", "]"}]}]}], " ", "\[Equal]", "0"}]}], 
+        "}"}]}], " ", ";", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Disk", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"xMag", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", 
+                RowBox[{"yMag", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", "0.1"}], "]"}],
+             ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", "NMag"}], "}"}]}], "]"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", "2"}], ",", 
+          RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+          RowBox[{"Ticks", "\[Rule]", "False"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot", "[", 
+         RowBox[{
+          RowBox[{"Evaluate", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"x", "[", "t", "]"}], ",", 
+               RowBox[{"y", "[", "t", "]"}]}], "}"}], "/.", 
+             RowBox[{"solvesystem", "[", 
+              RowBox[{"pt", ",", "system"}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "T"}], "}"}]}], "]"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"1", ",", "0", ",", "0"}], "]"}], ",", 
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"0", ",", "1", ",", "0"}], "]"}], ",", " ", 
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"0", ",", "0", ",", "1"}], "]"}]}], "}"}]}]}], "]"}]}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"T", ",", "24.00", ",", "\"\<time\>\""}], "}"}], ",", "0.001", 
+     ",", "25", ",", "0.05", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "0.05", ",", "\"\<friction\>\""}], "}"}], ",", "0", 
+     ",", "0.75", ",", "0.01", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"NMag", ",", "3", ",", "\"\<number of magnets\>\""}], "}"}], 
+     ",", "2", ",", "6", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"A", ",", "0.90", ",", "\"\<radius\>\""}], "}"}], ",", "0.01", 
+     ",", "2.00", ",", "0.1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pt", ",", 
+       RowBox[{"{", 
+        RowBox[{"1.2", ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], ",", "Locator"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Initialization", "\[RuleDelayed]", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"d", " ", "=", " ", "0.25"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"C1", "=", "0.15"}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"solvesystem", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"xinit_", ",", "yinit_"}], "}"}], ",", "localsystem_"}], 
+        "]"}], ":=", 
+       RowBox[{"NDSolve", "[", 
+        RowBox[{
+         RowBox[{"Join", "[", 
+          RowBox[{"localsystem", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"x", "[", "0", "]"}], " ", "==", " ", "xinit"}], ",", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], " ", "==", "yinit"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", "0"}]}], 
+            "}"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "25"}], "}"}]}], "]"}]}], ";"}], 
+     "\[IndentingNewLine]", ")"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.604006640000558*^9, 3.604006641801503*^9}, {
+   3.6040066846526327`*^9, 3.604006687397043*^9}, {3.604006726766617*^9, 
+   3.604006727234964*^9}, 3.634933037245804*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`A$$ = 0.9, $CellContext`NMag$$ = 
+    3, $CellContext`pt$$ = {0.395, 0.8900000000000001}, $CellContext`R$$ = 
+    0.05, $CellContext`T$$ = 24., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`T$$], 24., "time"}, 0.001, 25, 0.05}, {{
+       Hold[$CellContext`R$$], 0.05, "friction"}, 0, 0.75, 0.01}, {{
+       Hold[$CellContext`NMag$$], 3, "number of magnets"}, 2, 6, 1}, {{
+       Hold[$CellContext`A$$], 0.9, "radius"}, 0.01, 2., 0.1}, {{
+       Hold[$CellContext`pt$$], {1.2, 1}}, {-2, -2}, {2, 2}}}, 
+    Typeset`size$$ = {360., {178., 182.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`T$273089$$ = 0, $CellContext`R$273090$$ = 
+    0, $CellContext`NMag$273091$$ = 0, $CellContext`A$273092$$ = 
+    0, $CellContext`pt$273093$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`A$$ = 0.9, $CellContext`NMag$$ = 
+        3, $CellContext`pt$$ = {1.2, 1}, $CellContext`R$$ = 
+        0.05, $CellContext`T$$ = 24.}, "ControllerVariables" :> {
+        Hold[$CellContext`T$$, $CellContext`T$273089$$, 0], 
+        Hold[$CellContext`R$$, $CellContext`R$273090$$, 0], 
+        Hold[$CellContext`NMag$$, $CellContext`NMag$273091$$, 0], 
+        Hold[$CellContext`A$$, $CellContext`A$273092$$, 0], 
+        Hold[$CellContext`pt$$, $CellContext`pt$273093$$, {0, 0}]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`xMag$, $CellContext`yMag$, $CellContext`system$}, \
+$CellContext`xMag$ = 
+         Table[$CellContext`A$$ 
+           Cos[$CellContext`i (2 (Pi/$CellContext`NMag$$))], {$CellContext`i, 
+            1, $CellContext`NMag$$}]; $CellContext`yMag$ = 
+         Table[$CellContext`A$$ 
+           Sin[$CellContext`i (2 (Pi/$CellContext`NMag$$))], {$CellContext`i, 
+            1, $CellContext`NMag$$}]; $CellContext`system$ = {
+          Derivative[2][$CellContext`x][$CellContext`t] + $CellContext`R$$ 
+             Derivative[1][$CellContext`x][$CellContext`t] - 
+            Sum[(Part[$CellContext`xMag$, $CellContext`i] - \
+$CellContext`x[$CellContext`t])/(((
+                 Part[$CellContext`xMag$, $CellContext`i] - \
+$CellContext`x[$CellContext`t])^2 + (
+                 Part[$CellContext`yMag$, $CellContext`i] - \
+$CellContext`y[$CellContext`t])^2 + $CellContext`d^2)^
+              Rational[1, 2])^3, {$CellContext`i, 
+              1, $CellContext`NMag$$}] + $CellContext`C1 \
+$CellContext`x[$CellContext`t] == 0, 
+           Derivative[2][$CellContext`y][$CellContext`t] + $CellContext`R$$ 
+             Derivative[1][$CellContext`y][$CellContext`t] - 
+            Sum[(Part[$CellContext`yMag$, $CellContext`i] - \
+$CellContext`y[$CellContext`t])/(((
+                 Part[$CellContext`xMag$, $CellContext`i] - \
+$CellContext`x[$CellContext`t])^2 + (
+                 Part[$CellContext`yMag$, $CellContext`i] - \
+$CellContext`y[$CellContext`t])^2 + $CellContext`d^2)^
+              Rational[1, 2])^3, {$CellContext`i, 
+              1, $CellContext`NMag$$}] + $CellContext`C1 \
+$CellContext`y[$CellContext`t] == 0}; Show[
+          Graphics[
+           Table[
+            Disk[{
+              Part[$CellContext`xMag$, $CellContext`i], 
+              Part[$CellContext`yMag$, $CellContext`i]}, 
+             0.1], {$CellContext`i, 1, $CellContext`NMag$$}], PlotRange -> 2, 
+           Axes -> True, Ticks -> False], 
+          ParametricPlot[
+           Evaluate[
+            ReplaceAll[{
+              $CellContext`x[$CellContext`t], 
+              $CellContext`y[$CellContext`t]}, 
+             $CellContext`solvesystem[$CellContext`pt$$, \
+$CellContext`system$]], {$CellContext`t, 0, $CellContext`T$$}], ImageSize -> 
+           Full, PlotStyle -> {
+             RGBColor[1, 0, 0], 
+             RGBColor[0, 1, 0], 
+             RGBColor[0, 0, 1]}]]], 
+      "Specifications" :> {{{$CellContext`T$$, 24., "time"}, 0.001, 25, 0.05, 
+         Appearance -> "Labeled"}, {{$CellContext`R$$, 0.05, "friction"}, 0, 
+         0.75, 0.01, Appearance -> 
+         "Labeled"}, {{$CellContext`NMag$$, 3, "number of magnets"}, 2, 6, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`A$$, 0.9, "radius"}, 0.01, 
+         2., 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`pt$$, {1.2, 1}}, {-2, -2}, {2, 2}, 
+         ControlType -> Locator}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {267., 272.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(($CellContext`d = 0.25; $CellContext`C1 = 
+       0.15; $CellContext`solvesystem[{
+          Pattern[$CellContext`xinit, 
+           Blank[]], 
+          Pattern[$CellContext`yinit, 
+           Blank[]]}, 
+         Pattern[$CellContext`localsystem, 
+          Blank[]]] := NDSolve[
+         Join[$CellContext`localsystem, {$CellContext`x[
+            0] == $CellContext`xinit, $CellContext`y[0] == $CellContext`yinit,
+            Derivative[1][$CellContext`y][0] == 0, 
+           Derivative[1][$CellContext`x][0] == 
+           0}], {$CellContext`x, $CellContext`y}, {$CellContext`t, 0, 25}]; 
+      Null); Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.604006702357677*^9, 3.6040067283786182`*^9}, 
+   3.6349328740103207`*^9, 3.634933039400567*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"xMag", ",", "yMag", ",", "system"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"xMag", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"A", " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"i", "*", 
+            FractionBox[
+             RowBox[{"2", "\[Pi]"}], "NMag"]}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "NMag"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"yMag", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"A", " ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"i", "*", 
+            FractionBox[
+             RowBox[{"2", "\[Pi]"}], "NMag"]}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "NMag"}], "}"}]}], "]"}]}], ";", " ", 
+      RowBox[{"system", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"x", "''"}], "[", "t", "]"}], "+", " ", 
+           RowBox[{"R", " ", 
+            RowBox[{
+             RowBox[{"x", "'"}], "[", "t", "]"}]}], "-", 
+           RowBox[{"Sum", "[", 
+            RowBox[{
+             FractionBox[
+              RowBox[{" ", 
+               RowBox[{
+                RowBox[{"xMag", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "-", 
+                RowBox[{"x", "[", "t", "]"}]}]}], 
+              SuperscriptBox[
+               RowBox[{"(", 
+                SqrtBox[
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"xMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"x", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"yMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"y", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox["d", "2"]}]], ")"}], "3"]], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "1", ",", " ", "NMag"}], "}"}]}], "]"}], 
+           "+", 
+           RowBox[{"C1", " ", 
+            RowBox[{"x", "[", "t", "]"}]}]}], "\[Equal]", "0"}], ",", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"y", "''"}], "[", "t", "]"}], "+", " ", 
+           RowBox[{"R", " ", 
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "t", "]"}]}], "-", 
+           RowBox[{"Sum", "[", 
+            RowBox[{
+             FractionBox[
+              RowBox[{
+               RowBox[{"yMag", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "-", 
+               RowBox[{"y", "[", "t", "]"}]}], 
+              SuperscriptBox[
+               RowBox[{"(", 
+                SqrtBox[
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"xMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"x", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"yMag", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                    RowBox[{"y", "[", "t", "]"}]}], ")"}], "2"], "+", 
+                  SuperscriptBox["d", "2"]}]], ")"}], "3"]], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "1", ",", " ", "NMag"}], "}"}]}], "]"}], 
+           "+", 
+           RowBox[{"C1", " ", 
+            RowBox[{"y", "[", "t", "]"}]}]}], " ", "\[Equal]", "0"}]}], 
+        "}"}]}], " ", ";", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Disk", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"xMag", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", 
+                RowBox[{"yMag", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", "0.1"}], "]"}],
+             ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", "NMag"}], "}"}]}], "]"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", "2"}], ",", 
+          RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+          RowBox[{"Ticks", "\[Rule]", "False"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot", "[", 
+         RowBox[{
+          RowBox[{"Evaluate", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"x", "[", "t", "]"}], ",", 
+               RowBox[{"y", "[", "t", "]"}]}], "}"}], "/.", 
+             RowBox[{"threesolutions", "[", 
+              RowBox[{"pt", ",", "system"}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "T"}], "}"}]}], "]"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"1", ",", "0", ",", "0"}], "]"}], ",", 
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"0", ",", "1", ",", "0"}], "]"}], ",", " ", 
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"0", ",", "0", ",", "1"}], "]"}]}], "}"}]}]}], "]"}]}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"T", ",", "24.00", ",", "\"\<time\>\""}], "}"}], ",", "0.001", 
+     ",", "25", ",", "0.05", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "0.05", ",", "\"\<friction\>\""}], "}"}], ",", "0", 
+     ",", "0.75", ",", "0.01", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"NMag", ",", "3", ",", "\"\<number of magnets\>\""}], "}"}], 
+     ",", "2", ",", "6", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"A", ",", "0.90", ",", "\"\<radius\>\""}], "}"}], ",", "0.01", 
+     ",", "2.00", ",", "0.1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pt", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1.2", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1.1", ",", "0.95"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1.0", ",", "0.90"}], "}"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], ",", "Locator"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Initialization", "\[RuleDelayed]", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"d", " ", "=", " ", "0.25"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"C1", "=", "0.15"}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"solvesystem", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"xinit_", ",", "yinit_"}], "}"}], ",", "localsystem_"}], 
+        "]"}], ":=", 
+       RowBox[{"NDSolve", "[", 
+        RowBox[{
+         RowBox[{"Join", "[", 
+          RowBox[{"localsystem", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"x", "[", "0", "]"}], " ", "==", " ", "xinit"}], ",", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], " ", "==", "yinit"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", "0"}]}], 
+            "}"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "25"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"threesolutions", "[", 
+        RowBox[{"initialpositions_", ",", "localsystem_"}], "]"}], ":=", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"solvesystem", "[", 
+           RowBox[{"#", ",", "localsystem"}], "]"}], "&"}], ",", 
+         "initialpositions"}], "]"}]}]}], "\[IndentingNewLine]", ")"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.603745016499001*^9, 3.603745088864695*^9}, {
+   3.603745649224201*^9, 3.603745654579776*^9}, 3.604006312595949*^9, {
+   3.604006395279344*^9, 3.604006400510985*^9}, {3.634933019131076*^9, 
+   3.634933020393589*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`A$$ = 0.9, $CellContext`NMag$$ = 
+    3, $CellContext`pt$$ = {{1.165, 1.12}, {1.12, 0.9300000000000002}, {1.21, 
+    1.31}}, $CellContext`R$$ = 0.05, $CellContext`T$$ = 4.601000000000001, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`T$$], 24., "time"}, 0.001, 25, 0.05}, {{
+       Hold[$CellContext`R$$], 0.05, "friction"}, 0, 0.75, 0.01}, {{
+       Hold[$CellContext`NMag$$], 3, "number of magnets"}, 2, 6, 1}, {{
+       Hold[$CellContext`A$$], 0.9, "radius"}, 0.01, 2., 0.1}, {{
+       Hold[$CellContext`pt$$], {{1.2, 1}, {1.1, 0.95}, {1., 
+        0.9}}}, {-2, -2}, {2, 2}}}, Typeset`size$$ = {360., {178., 182.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`T$271816$$ = 0, $CellContext`R$271817$$ = 
+    0, $CellContext`NMag$271818$$ = 0, $CellContext`A$271819$$ = 
+    0, $CellContext`pt$271820$$ = {0, 0}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`A$$ = 0.9, $CellContext`NMag$$ = 
+        3, $CellContext`pt$$ = {{1.2, 1}, {1.1, 0.95}, {1., 
+          0.9}}, $CellContext`R$$ = 0.05, $CellContext`T$$ = 24.}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`T$$, $CellContext`T$271816$$, 0], 
+        Hold[$CellContext`R$$, $CellContext`R$271817$$, 0], 
+        Hold[$CellContext`NMag$$, $CellContext`NMag$271818$$, 0], 
+        Hold[$CellContext`A$$, $CellContext`A$271819$$, 0], 
+        Hold[$CellContext`pt$$, $CellContext`pt$271820$$, {0, 0}]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`xMag$, $CellContext`yMag$, $CellContext`system$}, \
+$CellContext`xMag$ = 
+         Table[$CellContext`A$$ 
+           Cos[$CellContext`i (2 (Pi/$CellContext`NMag$$))], {$CellContext`i, 
+            1, $CellContext`NMag$$}]; $CellContext`yMag$ = 
+         Table[$CellContext`A$$ 
+           Sin[$CellContext`i (2 (Pi/$CellContext`NMag$$))], {$CellContext`i, 
+            1, $CellContext`NMag$$}]; $CellContext`system$ = {
+          Derivative[2][$CellContext`x][$CellContext`t] + $CellContext`R$$ 
+             Derivative[1][$CellContext`x][$CellContext`t] - 
+            Sum[(Part[$CellContext`xMag$, $CellContext`i] - \
+$CellContext`x[$CellContext`t])/(((
+                 Part[$CellContext`xMag$, $CellContext`i] - \
+$CellContext`x[$CellContext`t])^2 + (
+                 Part[$CellContext`yMag$, $CellContext`i] - \
+$CellContext`y[$CellContext`t])^2 + $CellContext`d^2)^
+              Rational[1, 2])^3, {$CellContext`i, 
+              1, $CellContext`NMag$$}] + $CellContext`C1 \
+$CellContext`x[$CellContext`t] == 0, 
+           Derivative[2][$CellContext`y][$CellContext`t] + $CellContext`R$$ 
+             Derivative[1][$CellContext`y][$CellContext`t] - 
+            Sum[(Part[$CellContext`yMag$, $CellContext`i] - \
+$CellContext`y[$CellContext`t])/(((
+                 Part[$CellContext`xMag$, $CellContext`i] - \
+$CellContext`x[$CellContext`t])^2 + (
+                 Part[$CellContext`yMag$, $CellContext`i] - \
+$CellContext`y[$CellContext`t])^2 + $CellContext`d^2)^
+              Rational[1, 2])^3, {$CellContext`i, 
+              1, $CellContext`NMag$$}] + $CellContext`C1 \
+$CellContext`y[$CellContext`t] == 0}; Show[
+          Graphics[
+           Table[
+            Disk[{
+              Part[$CellContext`xMag$, $CellContext`i], 
+              Part[$CellContext`yMag$, $CellContext`i]}, 
+             0.1], {$CellContext`i, 1, $CellContext`NMag$$}], PlotRange -> 2, 
+           Axes -> True, Ticks -> False], 
+          ParametricPlot[
+           Evaluate[
+            ReplaceAll[{
+              $CellContext`x[$CellContext`t], 
+              $CellContext`y[$CellContext`t]}, 
+             $CellContext`threesolutions[$CellContext`pt$$, \
+$CellContext`system$]], {$CellContext`t, 0, $CellContext`T$$}], ImageSize -> 
+           Full, PlotStyle -> {
+             RGBColor[1, 0, 0], 
+             RGBColor[0, 1, 0], 
+             RGBColor[0, 0, 1]}]]], 
+      "Specifications" :> {{{$CellContext`T$$, 24., "time"}, 0.001, 25, 0.05, 
+         Appearance -> "Labeled"}, {{$CellContext`R$$, 0.05, "friction"}, 0, 
+         0.75, 0.01, Appearance -> 
+         "Labeled"}, {{$CellContext`NMag$$, 3, "number of magnets"}, 2, 6, 1, 
+         Appearance -> "Labeled"}, {{$CellContext`A$$, 0.9, "radius"}, 0.01, 
+         2., 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`pt$$, {{1.2, 1}, {1.1, 0.95}, {1., 
+           0.9}}}, {-2, -2}, {2, 2}, ControlType -> Locator}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {267., 272.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(($CellContext`d = 0.25; $CellContext`C1 = 
+       0.15; $CellContext`solvesystem[{
+          Pattern[$CellContext`xinit, 
+           Blank[]], 
+          Pattern[$CellContext`yinit, 
+           Blank[]]}, 
+         Pattern[$CellContext`localsystem, 
+          Blank[]]] := NDSolve[
+         Join[$CellContext`localsystem, {$CellContext`x[
+            0] == $CellContext`xinit, $CellContext`y[0] == $CellContext`yinit,
+            Derivative[1][$CellContext`y][0] == 0, 
+           Derivative[1][$CellContext`x][0] == 
+           0}], {$CellContext`x, $CellContext`y}, {$CellContext`t, 0, 
+          25}]; $CellContext`threesolutions[
+         Pattern[$CellContext`initialpositions, 
+          Blank[]], 
+         Pattern[$CellContext`localsystem, 
+          Blank[]]] := 
+       Map[$CellContext`solvesystem[#, $CellContext`localsystem]& , \
+$CellContext`initialpositions]); Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6037449818065434`*^9, 3.603745019592845*^9, 3.603745089873328*^9, 
+   3.6037453913763*^9, 3.603745657094091*^9, {3.6039992622029343`*^9, 
+   3.603999270346488*^9}, 3.60400631368336*^9, 3.604006401219365*^9, 
+   3.604006454741321*^9, 3.634932962141139*^9, 3.634933021493031*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+Evaluator->"Local",
+WindowSize->{1347, 1171},
+WindowMargins->{{0, Automatic}, {Automatic, 11}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 294, 4, 92, "Title"],
+Cell[864, 28, 649, 11, 87, "Text"],
+Cell[CellGroupData[{
+Cell[1538, 43, 404, 5, 51, "Subtitle"],
+Cell[1945, 50, 356, 6, 30, "Text"],
+Cell[CellGroupData[{
+Cell[2326, 60, 8601, 227, 501, "Input"],
+Cell[10930, 289, 5967, 115, 556, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16934, 409, 9219, 244, 518, "Input"],
+Cell[26156, 655, 6565, 126, 556, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

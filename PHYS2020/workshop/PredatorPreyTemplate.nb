@@ -1,0 +1,423 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     16684,        414]
+NotebookOptionsPosition[     15874,        382]
+NotebookOutlinePosition[     16329,        400]
+CellTagsIndexPosition[     16286,        397]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Predator-Prey", "Title",
+ CellChangeTimes->{{3.603743730719821*^9, 3.6037437636639833`*^9}, {
+  3.60374390445081*^9, 3.6037439073908463`*^9}, {3.603744347739382*^9, 
+  3.60374434853172*^9}, {3.603744382754343*^9, 3.60374438404949*^9}, {
+  3.6040136023472023`*^9, 3.604013605031839*^9}}],
+
+Cell["\<\
+Prey breed and get eaten.  Predators die out unless they can eat prey.
+   
+Here we give you pre - written code to play with this system.  What can you \
+say about how the system behaves?\
+\>", "Text",
+ CellChangeTimes->{{3.603744698661425*^9, 3.603744883170473*^9}, {
+  3.604001154611598*^9, 3.604001155696864*^9}, {3.666383366298079*^9, 
+  3.666383460360228*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"solutionPredatorPrey", "[", 
+   RowBox[{
+   "x0_", ",", "y0_", ",", "\[Alpha]_", ",", "\[Beta]_", ",", "\[Gamma]_", 
+    ",", "\[Delta]_", ",", "tmax_"}], "]"}], ":=", 
+  RowBox[{"NDSolve", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["x", "\[Prime]",
+         MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{"x", "[", "t", "]"}], 
+        RowBox[{"(", 
+         RowBox[{"\[Alpha]", "-", 
+          RowBox[{"\[Beta]", " ", 
+           RowBox[{"y", "[", "t", "]"}]}]}], ")"}]}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"y", "[", "t", "]"}]}], 
+        RowBox[{"(", 
+         RowBox[{"\[Gamma]", " ", "-", " ", 
+          RowBox[{"\[Delta]", " ", 
+           RowBox[{"x", "[", "t", "]"}]}]}], ")"}]}]}], ",", 
+      RowBox[{
+       RowBox[{"x", "[", "0", "]"}], "\[Equal]", "x0"}], ",", 
+      RowBox[{
+       RowBox[{"y", "[", "0", "]"}], "\[Equal]", "y0"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"x", "[", "t", "]"}], ",", 
+      RowBox[{"y", "[", "t", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "tmax"}], "}"}], ",", 
+    RowBox[{"MaxSteps", "\[Rule]", "100000"}], ",", 
+    RowBox[{"Method", "\[Rule]", "\"\<ImplicitRungeKutta\>\""}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.603744508951174*^9, 3.603744516267455*^9}, {
+  3.603744676642963*^9, 3.6037446860171413`*^9}, {3.603745386847138*^9, 
+  3.603745387190494*^9}, {3.603745424440209*^9, 3.6037454445254393`*^9}, {
+  3.604012740872682*^9, 3.604012841191441*^9}, {3.604013028607088*^9, 
+  3.604013044379759*^9}, {3.6040131407994967`*^9, 3.604013141598665*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Templates for making plots:", "Subtitle",
+ CellChangeTimes->{{3.41599703172396*^9, 3.415997059682042*^9}, 
+   3.415997114484988*^9, 3.415997146373543*^9, {3.415997484978815*^9, 
+   3.415997504688641*^9}, {3.416001955308617*^9, 3.416001959568941*^9}, {
+   3.424481933758943*^9, 3.424481945645804*^9}, {3.603744319581213*^9, 
+   3.603744345604001*^9}, {3.603744907674994*^9, 3.6037449172329197`*^9}}],
+
+Cell["\<\
+Perhaps you wish to simply plot the behaviour as a function of time\
+\>", "Text",
+ CellChangeTimes->{{3.416006200791356*^9, 3.41600620913227*^9}, {
+  3.416007587864752*^9, 3.4160076132823668`*^9}, {3.416010557720748*^9, 
+  3.4160105774598494`*^9}, {3.4217194488398743`*^9, 3.4217194846360903`*^9}, {
+  3.603744921504588*^9, 3.60374493723936*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"x", "[", "t", "]"}], ",", 
+         RowBox[{"y", "[", "t", "]"}]}], "}"}], "/.", 
+       RowBox[{"solutionPredatorPrey", "[", 
+        RowBox[{
+        "x0", ",", "y0", ",", "\[Alpha]", ",", "\[Beta]", ",", "\[Gamma]", 
+         ",", "\[Delta]", ",", "tmax"}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tmax"}], "}"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x0", ",", "4"}], "}"}], ",", "0", ",", "100"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"y0", ",", "3"}], "}"}], ",", "0", ",", "100"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "1"}], "}"}], ",", "0", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", "1.3"}], "}"}], ",", "0", ",", "5"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Gamma]", ",", "1"}], "}"}], ",", "0", ",", "10"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Delta]", ",", "1"}], "}"}], ",", "0", ",", "10"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"tmax", ",", "10"}], "}"}], ",", "0", ",", "50"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.604013746285421*^9, 3.6040137850757236`*^9}, {
+  3.604013864615999*^9, 3.604013865216895*^9}, {3.6040139509646597`*^9, 
+  3.604013963517919*^9}, {3.6349325647003183`*^9, 3.634932582701351*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`tmax$$ = 10, $CellContext`x0$$ = 
+    4, $CellContext`y0$$ = 3, $CellContext`\[Alpha]$$ = 
+    1, $CellContext`\[Beta]$$ = 1.3, $CellContext`\[Gamma]$$ = 
+    1, $CellContext`\[Delta]$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`x0$$], 4}, 0, 100}, {{
+       Hold[$CellContext`y0$$], 3}, 0, 100}, {{
+       Hold[$CellContext`\[Alpha]$$], 1}, 0, 5}, {{
+       Hold[$CellContext`\[Beta]$$], 1.3}, 0, 5}, {{
+       Hold[$CellContext`\[Gamma]$$], 1}, 0, 10}, {{
+       Hold[$CellContext`\[Delta]$$], 1}, 0, 10}, {{
+       Hold[$CellContext`tmax$$], 10}, 0, 50}}, Typeset`size$$ = {
+    972., {298., 303.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`x0$151240$$ = 
+    0, $CellContext`y0$151241$$ = 0, $CellContext`\[Alpha]$151242$$ = 
+    0, $CellContext`\[Beta]$151243$$ = 0, $CellContext`\[Gamma]$151244$$ = 
+    0, $CellContext`\[Delta]$151245$$ = 0, $CellContext`tmax$151246$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`tmax$$ = 10, $CellContext`x0$$ = 
+        4, $CellContext`y0$$ = 3, $CellContext`\[Alpha]$$ = 
+        1, $CellContext`\[Beta]$$ = 1.3, $CellContext`\[Gamma]$$ = 
+        1, $CellContext`\[Delta]$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`x0$$, $CellContext`x0$151240$$, 0], 
+        Hold[$CellContext`y0$$, $CellContext`y0$151241$$, 0], 
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$151242$$, 0], 
+        Hold[$CellContext`\[Beta]$$, $CellContext`\[Beta]$151243$$, 0], 
+        Hold[$CellContext`\[Gamma]$$, $CellContext`\[Gamma]$151244$$, 0], 
+        Hold[$CellContext`\[Delta]$$, $CellContext`\[Delta]$151245$$, 0], 
+        Hold[$CellContext`tmax$$, $CellContext`tmax$151246$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        Evaluate[
+         ReplaceAll[{
+           $CellContext`x[$CellContext`t], 
+           $CellContext`y[$CellContext`t]}, 
+          $CellContext`solutionPredatorPrey[$CellContext`x0$$, \
+$CellContext`y0$$, $CellContext`\[Alpha]$$, $CellContext`\[Beta]$$, \
+$CellContext`\[Gamma]$$, $CellContext`\[Delta]$$, $CellContext`tmax$$]]], \
+{$CellContext`t, 0, $CellContext`tmax$$}, ImageSize -> Full, PlotRange -> 
+        All], "Specifications" :> {{{$CellContext`x0$$, 4}, 0, 
+         100}, {{$CellContext`y0$$, 3}, 0, 
+         100}, {{$CellContext`\[Alpha]$$, 1}, 0, 
+         5}, {{$CellContext`\[Beta]$$, 1.3}, 0, 
+         5}, {{$CellContext`\[Gamma]$$, 1}, 0, 
+         10}, {{$CellContext`\[Delta]$$, 1}, 0, 
+         10}, {{$CellContext`tmax$$, 10}, 0, 50}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1017., {426., 431.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.604013751517168*^9, 3.604013785762903*^9}, 
+   3.604013865990384*^9, {3.6040139460696087`*^9, 3.604013964309381*^9}, {
+   3.634932559853387*^9, 3.6349325841156273`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"ParametricPlot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"x", "[", "t", "]"}], ",", 
+         RowBox[{"y", "[", "t", "]"}]}], "}"}], "/.", 
+       RowBox[{"solutionPredatorPrey", "[", 
+        RowBox[{
+        "x0", ",", "y0", ",", "\[Alpha]", ",", "\[Beta]", ",", "\[Gamma]", 
+         ",", "\[Delta]", ",", "tmax"}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tmax"}], "}"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"400", ",", "400"}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "L"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "L"}], "}"}]}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x0", ",", "2"}], "}"}], ",", "Locator"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"y0", ",", "2"}], "}"}], ",", "Locator"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Alpha]", ",", "1"}], "}"}], ",", "0", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", "1.3"}], "}"}], ",", "0", ",", "5", ",", 
+     "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Gamma]", ",", "1"}], "}"}], ",", "0", ",", "10"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Delta]", ",", "1"}], "}"}], ",", "0", ",", "10"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"L", ",", "3"}], "}"}], ",", "1", ",", "1000"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"tmax", ",", "10"}], "}"}], ",", "0", ",", "50"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.603745016499001*^9, 3.603745088864695*^9}, {
+  3.603745649224201*^9, 3.603745654579776*^9}, {3.60401285111508*^9, 
+  3.604012911205369*^9}, {3.604013178210701*^9, 3.604013219384923*^9}, {
+  3.6040132543670692`*^9, 3.604013265129312*^9}, {3.6040133176385813`*^9, 
+  3.604013317805257*^9}, {3.60401338086734*^9, 3.604013455367659*^9}, {
+  3.604013504572361*^9, 3.604013536143608*^9}, {3.6349326286895113`*^9, 
+  3.6349326373426857`*^9}, {3.634932697171401*^9, 3.634932719050041*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`L$$ = 3, $CellContext`tmax$$ = 
+    10, $CellContext`x0$$ = 2.224, $CellContext`y0$$ = 
+    2.18, $CellContext`\[Alpha]$$ = 1, $CellContext`\[Beta]$$ = 
+    1.3, $CellContext`\[Gamma]$$ = 1, $CellContext`\[Delta]$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`x0$$], 2}, Automatic}, {{
+       Hold[$CellContext`y0$$], 2}, Automatic}, {{
+       Hold[$CellContext`\[Alpha]$$], 1}, 0, 5}, {{
+       Hold[$CellContext`\[Beta]$$], 1.3}, 0, 5, 0.1}, {{
+       Hold[$CellContext`\[Gamma]$$], 1}, 0, 10}, {{
+       Hold[$CellContext`\[Delta]$$], 1}, 0, 10}, {{
+       Hold[$CellContext`L$$], 3}, 1, 1000}, {{
+       Hold[$CellContext`tmax$$], 10}, 0, 50}}, Typeset`size$$ = {
+    400., {198., 202.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Alpha]$167111$$ = 
+    0, $CellContext`\[Beta]$167112$$ = 0, $CellContext`\[Gamma]$167113$$ = 
+    0, $CellContext`\[Delta]$167114$$ = 0, $CellContext`L$167115$$ = 
+    0, $CellContext`tmax$167116$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`L$$ = 3, $CellContext`tmax$$ = 
+        10, $CellContext`x0$$ = 2, $CellContext`y0$$ = 
+        2, $CellContext`\[Alpha]$$ = 1, $CellContext`\[Beta]$$ = 
+        1.3, $CellContext`\[Gamma]$$ = 1, $CellContext`\[Delta]$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Alpha]$$, $CellContext`\[Alpha]$167111$$, 0], 
+        Hold[$CellContext`\[Beta]$$, $CellContext`\[Beta]$167112$$, 0], 
+        Hold[$CellContext`\[Gamma]$$, $CellContext`\[Gamma]$167113$$, 0], 
+        Hold[$CellContext`\[Delta]$$, $CellContext`\[Delta]$167114$$, 0], 
+        Hold[$CellContext`L$$, $CellContext`L$167115$$, 0], 
+        Hold[$CellContext`tmax$$, $CellContext`tmax$167116$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> ParametricPlot[
+        Evaluate[
+         ReplaceAll[{
+           $CellContext`x[$CellContext`t], 
+           $CellContext`y[$CellContext`t]}, 
+          $CellContext`solutionPredatorPrey[$CellContext`x0$$, \
+$CellContext`y0$$, $CellContext`\[Alpha]$$, $CellContext`\[Beta]$$, \
+$CellContext`\[Gamma]$$, $CellContext`\[Delta]$$, $CellContext`tmax$$]]], \
+{$CellContext`t, 0, $CellContext`tmax$$}, ImageSize -> {400, 400}, 
+        PlotRange -> {{0, $CellContext`L$$}, {0, $CellContext`L$$}}], 
+      "Specifications" :> {{{$CellContext`x0$$, 2}, Automatic, ControlType -> 
+         Locator}, {{$CellContext`y0$$, 2}, Automatic, ControlType -> 
+         Locator}, {{$CellContext`\[Alpha]$$, 1}, 0, 
+         5}, {{$CellContext`\[Beta]$$, 1.3}, 0, 5, 
+         0.1}, {{$CellContext`\[Gamma]$$, 1}, 0, 
+         10}, {{$CellContext`\[Delta]$$, 1}, 0, 10}, {{$CellContext`L$$, 3}, 
+         1, 1000}, {{$CellContext`tmax$$, 10}, 0, 50}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{451., {315., 320.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6040132015903473`*^9, 3.604013220015984*^9}, 
+   3.604013267027896*^9, 3.604013328381103*^9, 3.6040133845813913`*^9, {
+   3.6040134313216457`*^9, 3.6040134564912043`*^9}, {3.604013510234626*^9, 
+   3.604013541338808*^9}, 3.634932637982068*^9, {3.634932697652961*^9, 
+   3.634932719612426*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+Evaluator->"Local",
+WindowSize->{1151, 811},
+WindowMargins->{{7, Automatic}, {Automatic, 0}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 292, 4, 92, "Title"],
+Cell[862, 28, 374, 8, 68, "Text"],
+Cell[1239, 38, 1820, 47, 63, "Input"],
+Cell[CellGroupData[{
+Cell[3084, 89, 404, 5, 51, "Subtitle"],
+Cell[3491, 96, 356, 6, 30, "Text"],
+Cell[CellGroupData[{
+Cell[3872, 106, 1806, 53, 63, "Input"],
+Cell[5681, 161, 3676, 68, 874, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9394, 234, 2458, 69, 63, "Input"],
+Cell[11855, 305, 3979, 72, 652, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

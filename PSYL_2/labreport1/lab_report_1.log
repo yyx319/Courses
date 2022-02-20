@@ -1,0 +1,176 @@
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.3.23)  21 SEP 2018 15:17
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./lab_report_1.tex
+(./lab_report_1.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
+(c:/texlive/2017/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(c:/texlive/2017/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(c:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty)
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 99.
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2016/07/11 v4.10 LaTeX color/graphics driver for XeTeX (L3/RRM/
+JK)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(./lab_report_1.aux)
+\openout1 = `lab_report_1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+
+Overfull \hbox (26.19588pt too wide) in paragraph at lines 23--23
+[]\TU/lmr/bx/n/14.4 DUFFING EQUATIONS FOR INVERTED PEN-
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 26.
+File: plot/exp.png Graphic file (type QTm)
+<use  "plot/exp.png" > [1
+
+]
+File: plot/exp_res.png Graphic file (type QTm)
+ <use  "plot/exp_res.png" >
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.70 \begin{figure}[H]
+                      
+Option `H' ignored and `p' used.
+
+File: plot/vis.png Graphic file (type QTm)
+<use  "plot/vis.png" > [2]
+File: plot/poincare.png Graphic file (type QTm)
+ <use  "plot/poincare.png" > [3] [4] [5]
+File: plot/basin_2.png Graphic file (type QTm)
+
+<use  "plot/basin_2.png" >
+Overfull \hbox (0.96252pt too wide) in paragraph at lines 102--103
+\TU/lmr/m/n/10 force($\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 ^^Y=!$\TU/lmr/m/n/10 ).
+ But as A increases, the period of motion will double($\OT1/cmr/m/n/10 4\OML/cm
+m/m/it/10 ^^Y=!; \OT1/cmr/m/n/10 8\OML/cmm/m/it/10 ^^Y=!$\TU/lmr/m/n/10 ,...)
+ []
+
+[6]
+Overfull \hbox (9.40132pt too wide) in paragraph at lines 104--105
+\TU/lmr/m/n/10 2.903$\OMS/cmsy/m/n/10 ^^F\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT
+1/cmr/m/n/10 002$ \TU/lmr/m/n/10 as the points spread out fully in position aft
+er that point. 2.903$\OMS/cmsy/m/n/10 ^^F\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT
+1/cmr/m/n/10 002$
+ []
+
+File: plot/bif.png Graphic file (type QTm)
+<use  "plot/bif.png" >
+No file lab_report_1.bbl.
+[7]
+Overfull \hbox (6.4167pt too wide) in paragraph at lines 127--128
+[]\TU/lmr/m/n/10 1.ANU.(2018).PHYS2017/2201 SECOND YEAR LABORATORY MANUAL.
+ []
+
+
+Overfull \hbox (21.34343pt too wide) in paragraph at lines 131--132
+[]\TU/lmr/m/n/10 3.A PRECISE CALCULATION OF THE FEIGENBAUM CONSTANTS,KEITH
+ []
+
+
+Overfull \hbox (28.13pt too wide) in paragraph at lines 133--134
+[]\TU/lmr/m/n/10 4.https://mathematica.stackexchange.com/questions/136204/basin
+s-of-attraction-
+ []
+
+File: plot/code1.png Graphic file (type QTm)
+<use  "plot/code1.png" >
+File: plot/code2.png Graphic file (type QTm)
+ <use  "plot/code2.png" >
+File: plot/code3.png Graphic file (type QTm)
+ <use  "plot/code3.png" >
+File: plot/code4.png Graphic file (type QTm)
+
+<use  "plot/code4.png" >
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] [9] [10] (./lab_report_1.aux) ) 
+Here is how much of TeX's memory you used:
+ 716 strings out of 493005
+ 9282 string characters out of 6137956
+ 73679 words of memory out of 5000000
+ 4701 multiletter control sequences out of 15000+600000
+ 6432 words of font info for 30 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 25i,6n,19p,1076b,215s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on lab_report_1.pdf (10 pages).

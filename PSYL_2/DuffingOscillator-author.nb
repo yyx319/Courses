@@ -1,0 +1,1655 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     76481,       1647]
+NotebookOptionsPosition[     70005,       1512]
+NotebookOutlinePosition[     72228,       1571]
+CellTagsIndexPosition[     71900,       1559]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Duffing Oscillator", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4001851395843296`*^9, 3.4001851438304353`*^9}, 
+   3.461090759957857*^9},ExpressionUUID->"f4006318-2eba-449c-bb1d-\
+50a9411b0017"],
+
+Cell["", "InitializationSection",ExpressionUUID->"7ce9315a-213b-49ba-9a1b-75866328db2e"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection",ExpressionUUID->"a622c211-e148-4ed7-91f0-96e4118c28d3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sol1", ",", "tbl", ",", "sol2"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"\[Gamma]", "=", "0.1"}], ";", 
+      RowBox[{"\[Epsilon]", "=", "0.25"}], ";", 
+      RowBox[{"\[CapitalOmega]", "=", "2"}], ";", 
+      RowBox[{"\[Omega]", "=", "1"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"sol1", "=", 
+       RowBox[{"NDSolve", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{
+               RowBox[{"xs", "[", "t", "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"t", ",", "1"}], "}"}]}], "]"}], "+", 
+             RowBox[{"\[Gamma]", "  ", 
+              RowBox[{"xs", "[", "t", "]"}]}], "-", 
+             RowBox[{
+              SuperscriptBox["\[Omega]", "2"], " ", 
+              RowBox[{"x", "[", "t", "]"}]}], "+", 
+             RowBox[{"\[Epsilon]", " ", 
+              SuperscriptBox[
+               RowBox[{"x", "[", "t", "]"}], "3"]}]}], "\[Equal]", 
+            RowBox[{"\[CapitalGamma]", " ", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[CapitalOmega]", " ", "t"}], "]"}]}]}], ",", 
+           RowBox[{
+            RowBox[{"xs", "[", "t", "]"}], "\[Equal]", 
+            RowBox[{"D", "[", 
+             RowBox[{
+              RowBox[{"x", "[", "t", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"t", ",", "1"}], "}"}]}], "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"x", "[", "0", "]"}], "\[Equal]", " ", "1"}], ",", 
+           RowBox[{
+            RowBox[{"xs", "[", "0", "]"}], "\[Equal]", " ", "0"}]}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "[", "t", "]"}], ",", 
+           RowBox[{"xs", "[", "t", "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "400"}], "}"}], ",", 
+         RowBox[{"MaxSteps", "\[Rule]", " ", "Infinity"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"selection", "==", "\"\<Poincar\[EAcute] section\>\""}], ",", 
+        
+        RowBox[{
+         RowBox[{"sol2", "=", 
+          RowBox[{"NDSolve", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"D", "[", 
+                 RowBox[{
+                  RowBox[{"xs", "[", "t", "]"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"t", ",", "1"}], "}"}]}], "]"}], "+", 
+                RowBox[{"\[Gamma]", "  ", 
+                 RowBox[{"xs", "[", "t", "]"}]}], "-", 
+                RowBox[{
+                 SuperscriptBox["\[Omega]", "2"], " ", 
+                 RowBox[{"x", "[", "t", "]"}]}], "+", 
+                RowBox[{"\[Epsilon]", " ", 
+                 SuperscriptBox[
+                  RowBox[{"x", "[", "t", "]"}], "3"]}]}], "\[Equal]", 
+               RowBox[{"\[CapitalGamma]", " ", 
+                RowBox[{"Cos", "[", 
+                 RowBox[{"\[CapitalOmega]", " ", "t"}], "]"}]}]}], ",", 
+              RowBox[{
+               RowBox[{"xs", "[", "t", "]"}], "\[Equal]", 
+               RowBox[{"D", "[", 
+                RowBox[{
+                 RowBox[{"x", "[", "t", "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"t", ",", "1"}], "}"}]}], "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"x", "[", "0", "]"}], "\[Equal]", " ", "1"}], ",", 
+              RowBox[{
+               RowBox[{"xs", "[", "0", "]"}], "\[Equal]", " ", "0"}]}], "}"}],
+             ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"x", "[", "t", "]"}], ",", 
+              RowBox[{"xs", "[", "t", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "4000"}], "}"}], ",", 
+            RowBox[{"MaxSteps", "\[Rule]", "Infinity"}]}], "]"}]}], ";", 
+         RowBox[{"tbl", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"First", "[", 
+                RowBox[{
+                 RowBox[{"x", "[", "t", "]"}], "/.", "sol2"}], "]"}], ",", 
+               RowBox[{"First", "[", 
+                RowBox[{
+                 RowBox[{"xs", "[", "t", "]"}], "/.", "sol2"}], "]"}]}], 
+              "}"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "100", ",", "4000", ",", 
+              RowBox[{"ControlActive", "[", 
+               RowBox[{
+                RowBox[{"16", " ", 
+                 RowBox[{"Pi", "/", " ", "\[CapitalOmega]"}]}], ",", 
+                RowBox[{"2", " ", 
+                 RowBox[{"Pi", "/", "\[CapitalOmega]"}]}]}], "]"}]}], "}"}]}],
+            "]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Which", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"selection", "==", "\"\<time series\>\""}], ",", 
+        RowBox[{"Plot", "[", 
+         RowBox[{
+          RowBox[{"Evaluate", "[", 
+           RowBox[{
+            RowBox[{"x", "[", "t", "]"}], "/.", "sol1"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "100", ",", "200"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", " ", 
+           RowBox[{"RGBColor", "[", 
+            RowBox[{"1", ",", "0.47", ",", "0"}], "]"}]}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"550", ",", "375"}], "}"}]}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"selection", "==", "\"\<phase space\>\""}], ",", 
+        RowBox[{"ParametricPlot", "[", 
+         RowBox[{
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"First", "[", 
+              RowBox[{
+               RowBox[{"x", "[", "t", "]"}], "/.", "sol1"}], "]"}], ",", 
+             RowBox[{"First", "[", 
+              RowBox[{
+               RowBox[{"xs", "[", "t", "]"}], "/.", "sol1"}], "]"}]}], "}"}], 
+           "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "100", ",", "200"}], "}"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"550", ",", "375"}], "}"}]}], ",", 
+          RowBox[{"PlotPoints", "\[Rule]", " ", "1000"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"selection", "==", "\"\<Poincar\[EAcute] section\>\""}], ",", 
+        
+        RowBox[{"ListPlot", "[", 
+         RowBox[{"tbl", ",", 
+          RowBox[{"ImageSize", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"550", ",", "375"}], "}"}]}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"PointSize", "[", "0.0075", "]"}], ",", 
+             RowBox[{"RGBColor", "[", 
+              RowBox[{"1", ",", "0", ",", "0"}], "]"}]}], "}"}]}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}]}], "]"}]}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[CapitalGamma]", ",", "0.2", ",", "\"\<forcing amplitude\>\""}], 
+      "}"}], ",", "0.2", ",", "2.5", ",", "0.1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"selection", ",", "\"\<time series\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<time series\>\"", ",", "\"\<phase space\>\"", ",", 
+       "\"\<Poincar\[EAcute] section\>\""}], "}"}]}], "}"}], ",", 
+   RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+    RowBox[{"{", 
+     RowBox[{"\[CapitalGamma]", ",", "selection"}], "}"}]}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.4001851287287197`*^9, {3.400185186011088*^9, 
+   3.4001855254391613`*^9}, {3.400185594508478*^9, 3.400185619214003*^9}, {
+   3.4001856565476866`*^9, 3.400185680622304*^9}, {3.400185746837517*^9, 
+   3.4001857476586976`*^9}, {3.40018579643884*^9, 3.4001858666097407`*^9}, {
+   3.4001860058800015`*^9, 3.4001860087341056`*^9}, {3.400189385296772*^9, 
+   3.400189479406147*^9}, {3.400189623937397*^9, 3.400189633312397*^9}, 
+   3.400189836984272*^9, {3.4003381164933987`*^9, 3.4003382307376738`*^9}, 
+   3.4003382699740925`*^9, 3.4003383134566174`*^9, {3.40033834896768*^9, 
+   3.400338349438357*^9}, {3.400338391358635*^9, 3.400338396305749*^9}, {
+   3.400338467418003*^9, 3.400338471594008*^9}, {3.400338587530717*^9, 
+   3.4003385878912354`*^9}, {3.40033864514356*^9, 3.4003386878449616`*^9}, {
+   3.400338736054283*^9, 3.400338747420627*^9}, {3.400338787858774*^9, 
+   3.4003387899417696`*^9}, {3.4003389200488544`*^9, 
+   3.4003389205195312`*^9}, {3.400338974997867*^9, 3.4003390203130274`*^9}, {
+   3.4003390659286194`*^9, 3.4003390745009456`*^9}, {3.4003391411868353`*^9, 
+   3.4003391493485713`*^9}, {3.4003391878439245`*^9, 
+   3.4003391884548035`*^9}, {3.4003392356827135`*^9, 3.400339237365133*^9}, {
+   3.400339304862189*^9, 3.400339308046768*^9}, {3.4003405129805965`*^9, 
+   3.4003405495118465`*^9}, {3.4004415576554303`*^9, 3.400441589371035*^9}, {
+   3.4004416437892847`*^9, 3.400441648095477*^9}, {3.400588229688362*^9, 
+   3.400588312422737*^9}, {3.400588414625862*^9, 
+   3.400588414750862*^9}},ExpressionUUID->"a96f7f03-482a-4452-a8aa-\
+a595676f82f0"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "time series", $CellContext`\[CapitalGamma]$$ = 0.2, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 0.2, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "time series"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39379$$ = 
+    0, $CellContext`selection$39380$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "time series", $CellContext`\[CapitalGamma]$$ = 0.2}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39379$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39380$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 0.2, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, "time series"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{593., {242., 248.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->18831665,ExpressionUUID->"46261094-7a02-46ec-8674-ec3ef42f3aba"]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection",ExpressionUUID->"4e5f5eb5-5718-440e-b526-43aab53c4921"],
+
+Cell[TextData[{
+ "The Duffing oscillator moves in a double well potential, sometimes \
+characterized as nonlinear elasticity, with sinusoidal external forcing. It \
+is described by the equation ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["d", "2"], "x"}], 
+      RowBox[{"d", " ", 
+       SuperscriptBox["t", "2"]}]], "+", 
+     RowBox[{"\[Gamma]", 
+      FractionBox[
+       RowBox[{"d", " ", "x"}], 
+       RowBox[{"d", " ", "t"}]]}], "-", 
+     RowBox[{
+      SuperscriptBox["\[Omega]", "2"], "x"}], "+", 
+     RowBox[{"\[Epsilon]", " ", 
+      SuperscriptBox["x", "3"]}]}], "=", 
+    RowBox[{"\[CapitalGamma]", " ", 
+     RowBox[{"cos", "(", 
+      RowBox[{"\[CapitalOmega]", " ", "t"}], ")"}]}]}], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"716a20a0-4965-4313-95da-b777aaa6cf5a"],
+ ". We consider the parameters ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Gamma]", "=", "0.1"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"5acf4c3b-1fbc-44a6-91d5-8dc3b420bef8"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Epsilon]", "=", "0.25"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"03cf33af-e176-45f2-b4b1-11be0a9a17a3"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Omega]", "=", "1"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"01ae8c0b-5d56-47dd-b832-bae46e4acdd0"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[CapitalOmega]", "=", "2"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"5f9e8fd6-2415-4a8f-ac0a-7ed96ab940f7"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"x", 
+     RowBox[{"(", "0", ")"}]}], "=", "1"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"9e47de13-4925-4660-b044-54fed4b3232a"],
+ ", and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{"d", " ", "x"}], 
+       RowBox[{"d", " ", "t"}]], ")"}], 
+     RowBox[{"t", "=", "0"}]], "=", "0"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"165fdc45-256f-4c9a-b6cd-ed508804b5ed"],
+ ". Solutions to the oscillator equation can exhibit extreme nonlinear \
+dynamics, including limit cycles, strange attractors, and chaotic behavior. \
+The system is, as expected, highly sensitive to the initial conditions."
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.400186268768016*^9, 3.400186593374778*^9}, {
+   3.400189505468647*^9, 3.400189509437397*^9}, 3.400189657968647*^9, {
+   3.400198941025964*^9, 3.400199234898828*^9}, {3.4003394551683187`*^9, 
+   3.400339563514112*^9}, {3.400339774888053*^9, 3.4003398600705395`*^9}, {
+   3.4003399174630656`*^9, 3.400339945613544*^9}, {3.4003406365743465`*^9, 
+   3.4003406366368465`*^9}, {3.4003440326242385`*^9, 3.400344210710314*^9}, {
+   3.400346275121222*^9, 3.4003462891680965`*^9}, {3.4003578675575957`*^9, 
+   3.4003579082621527`*^9}, {3.4003579448134713`*^9, 3.400357979333294*^9}, {
+   3.400584454860237*^9, 3.400584455844612*^9}, {3.4560789408040667`*^9, 
+   3.45607894675723*^9}, {3.4560790767580614`*^9, 3.4560791149926815`*^9}, {
+   3.461090819621636*^9, 3.4610908753683434`*^9}, {3.4610909054427357`*^9, 
+   3.4610909120493937`*^9}, {3.461090963336712*^9, 3.461090980284214*^9}, {
+   3.461091014222065*^9, 3.4610910578715363`*^9}, {3.461091095551647*^9, 
+   3.461091133649968*^9}, {3.461091171784143*^9, 3.461091178835408*^9}, {
+   3.461091226040255*^9, 3.4610912647267647`*^9}, {3.461091306720975*^9, 
+   3.4610913077606573`*^9}, {3.4610913786114273`*^9, 3.4610914954879847`*^9}, 
+   3.461091541975095*^9, {3.4610915903587847`*^9, 3.4610916137242613`*^9}, {
+   3.4610916473536377`*^9, 3.46109166027011*^9}, {3.461091705652463*^9, 
+   3.461091768122684*^9}, {3.4610918947431297`*^9, 3.461091954545886*^9}, {
+   3.4610928108668957`*^9, 3.461092813250702*^9}, {3.461093024566655*^9, 
+   3.4610930281079493`*^9}, {3.461093063764863*^9, 3.4610930719250507`*^9}, {
+   3.461093104211279*^9, 3.46109312971091*^9}, {3.4615862665*^9, 
+   3.4615862666875*^9}},ExpressionUUID->"ea1be260-8be4-4d71-b240-\
+d8a34f34575c"],
+
+Cell[TextData[{
+ "When the periodic force (",
+ Cell[BoxData[
+  FormBox["\[CapitalGamma]", TraditionalForm]], "InlineMath",ExpressionUUID->
+  "bc2d1286-37b9-4e67-9697-246a834707a2"],
+ ") that drives the system is large, the motion can become chaotic and the \
+phase space diagram can develop a strange attractor.",
+ " ",
+ "A Poincar\[EAcute] section can be plotted by taking one phase space point \
+in each period of the driving force.",
+ StyleBox[" ",
+  FontFamily->"ArialMT",
+  FontSize->10],
+ "In the simplest cases, when the system enters a limit cycle, the Poincar\
+\[EAcute] section reduces to a single point. A strange attractor is usually \
+associated with a complicated fractal curve. "
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.400186268768016*^9, 3.400186593374778*^9}, {
+   3.400189505468647*^9, 3.400189509437397*^9}, 3.400189657968647*^9, {
+   3.400198941025964*^9, 3.400199234898828*^9}, {3.4003394551683187`*^9, 
+   3.400339563514112*^9}, {3.400339774888053*^9, 3.4003398600705395`*^9}, {
+   3.4003399174630656`*^9, 3.400339945613544*^9}, {3.4003406365743465`*^9, 
+   3.4003406366368465`*^9}, {3.4003440326242385`*^9, 3.400344210710314*^9}, {
+   3.400346275121222*^9, 3.4003462891680965`*^9}, {3.4003578675575957`*^9, 
+   3.4003579082621527`*^9}, {3.4003579448134713`*^9, 3.400357979333294*^9}, {
+   3.400584454860237*^9, 3.400584455844612*^9}, {3.4560789408040667`*^9, 
+   3.45607894675723*^9}, {3.4560790767580614`*^9, 3.4560791149926815`*^9}, {
+   3.461090819621636*^9, 3.4610908753683434`*^9}, {3.4610909054427357`*^9, 
+   3.4610909120493937`*^9}, {3.461090963336712*^9, 3.461090980284214*^9}, {
+   3.461091014222065*^9, 3.4610910578715363`*^9}, {3.461091095551647*^9, 
+   3.461091133649968*^9}, {3.461091171784143*^9, 3.4610911793713713`*^9}, {
+   3.461091817976941*^9, 3.46109182115641*^9}, 3.461091890870953*^9, {
+   3.461091973370863*^9, 3.4610921845944767`*^9}, {3.461092260239876*^9, 
+   3.4610923040236683`*^9}, {3.461092695106576*^9, 3.461092723528192*^9}, {
+   3.4610928594231777`*^9, 3.461092871845018*^9}, {3.461092906072793*^9, 
+   3.461092914674127*^9}, {3.461093217499852*^9, 3.4610932514924107`*^9}, {
+   3.461093925904498*^9, 3.461093931391458*^9}, 3.461586248765625*^9},
+ CellID->1158373419,ExpressionUUID->"e0a29789-093e-4520-96e7-fe6e2c2799de"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection",ExpressionUUID->"438ddf63-c8f0-4808-bc35-3a042569bea8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "time series", $CellContext`\[CapitalGamma]$$ = 2.3000000000000003`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 2.3000000000000003`, 
+       "forcing amplitude"}, 0.2, 2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "time series"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39434$$ = 
+    0, $CellContext`selection$39435$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "time series", $CellContext`\[CapitalGamma]$$ = 2.3000000000000003`}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39434$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39435$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 
+          2.3000000000000003`, "forcing amplitude"}, 0.2, 2.5, 0.1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, "time series"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->136599181,ExpressionUUID->"005ec3ea-6139-4803-9764-ff2397c1a294"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection",ExpressionUUID->"07d3df0c-8c91-44e1-bcc1-94a4dfb5f496"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "time series", $CellContext`\[CapitalGamma]$$ = 1.1, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 1.1, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "time series"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39489$$ = 
+    0, $CellContext`selection$39490$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "time series", $CellContext`\[CapitalGamma]$$ = 1.1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39489$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39490$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 1.1, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, "time series"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->510186445,ExpressionUUID->"02f5b541-b19a-4a49-926f-247c30341f73"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "phase space", $CellContext`\[CapitalGamma]$$ = 1.1, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 1.1, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "phase space"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39544$$ = 
+    0, $CellContext`selection$39545$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "phase space", $CellContext`\[CapitalGamma]$$ = 1.1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39544$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39545$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 1.1, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, "phase space"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->352475858,ExpressionUUID->"867d963f-a6f5-490c-a4c7-bd4ccb7916f9"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "Poincar\[EAcute] section", $CellContext`\[CapitalGamma]$$ = 1.1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 1.1, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "Poincar\[EAcute] section"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39599$$ = 
+    0, $CellContext`selection$39600$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "Poincar\[EAcute] section", $CellContext`\[CapitalGamma]$$ = 1.1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39599$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39600$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 1.1, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, 
+          "Poincar\[EAcute] section"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->65599392,ExpressionUUID->"3c6703bb-628f-4eff-bfa0-6971fa077cfe"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "time series", $CellContext`\[CapitalGamma]$$ = 1.8, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 1.8, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "time series"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39654$$ = 
+    0, $CellContext`selection$39655$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "time series", $CellContext`\[CapitalGamma]$$ = 1.8}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39654$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39655$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 1.8, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, "time series"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->108278870,ExpressionUUID->"d919d2d6-eb02-40b2-890e-01d6eedfbc61"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "phase space", $CellContext`\[CapitalGamma]$$ = 1.8, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 1.8, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "phase space"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39709$$ = 
+    0, $CellContext`selection$39710$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "phase space", $CellContext`\[CapitalGamma]$$ = 1.8}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39709$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39710$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 1.8, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, "phase space"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->439591879,ExpressionUUID->"58defabe-3c1a-4fb9-bb82-f98ef3f12972"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`selection$$ = 
+    "Poincar\[EAcute] section", $CellContext`\[CapitalGamma]$$ = 1.8, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalGamma]$$], 1.8, "forcing amplitude"}, 0.2, 
+      2.5, 0.1}, {{
+       Hold[$CellContext`selection$$], "Poincar\[EAcute] section"}, {
+      "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+    Typeset`size$$ = {550., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalGamma]$39764$$ = 
+    0, $CellContext`selection$39765$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`selection$$ = 
+        "Poincar\[EAcute] section", $CellContext`\[CapitalGamma]$$ = 1.8}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalGamma]$$, \
+$CellContext`\[CapitalGamma]$39764$$, 0], 
+        Hold[$CellContext`selection$$, $CellContext`selection$39765$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`sol1$, $CellContext`tbl$, $CellContext`sol2$}, \
+$CellContext`\[Gamma] = 0.1; $CellContext`\[Epsilon] = 
+         0.25; $CellContext`\[CapitalOmega] = 2; $CellContext`\[Omega] = 
+         1; $CellContext`sol1$ = NDSolve[{D[
+               $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+             Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+              $CellContext`x[$CellContext`t], {$CellContext`t, 
+               1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+            $CellContext`x[$CellContext`t], 
+            $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 400}, 
+           MaxSteps -> Infinity]; 
+        If[$CellContext`selection$$ == 
+          "Poincar\[EAcute] section", $CellContext`sol2$ = NDSolve[{D[
+                 $CellContext`xs[$CellContext`t], {$CellContext`t, 
+                  1}] + $CellContext`\[Gamma] $CellContext`xs[$CellContext`t] - \
+$CellContext`\[Omega]^2 $CellContext`x[$CellContext`t] + $CellContext`\
+\[Epsilon] $CellContext`x[$CellContext`t]^3 == $CellContext`\[CapitalGamma]$$ 
+               Cos[$CellContext`\[CapitalOmega] $CellContext`t], \
+$CellContext`xs[$CellContext`t] == D[
+                $CellContext`x[$CellContext`t], {$CellContext`t, 
+                 1}], $CellContext`x[0] == 1, $CellContext`xs[0] == 0}, {
+              $CellContext`x[$CellContext`t], 
+              $CellContext`xs[$CellContext`t]}, {$CellContext`t, 0, 4000}, 
+             MaxSteps -> Infinity]; $CellContext`tbl$ = Table[
+             Evaluate[{
+               First[
+                ReplaceAll[
+                 $CellContext`x[$CellContext`t], $CellContext`sol2$]], 
+               First[
+                ReplaceAll[
+                 $CellContext`xs[$CellContext`t], $CellContext`sol2$]]}], \
+{$CellContext`t, 100, 4000, 
+              ControlActive[
+              16 (Pi/$CellContext`\[CapitalOmega]), 
+               2 (Pi/$CellContext`\[CapitalOmega])]}]]; 
+        Which[$CellContext`selection$$ == "time series", 
+          Plot[
+           Evaluate[
+            ReplaceAll[
+             $CellContext`x[$CellContext`t], $CellContext`sol1$]], \
+{$CellContext`t, 100, 200}, PlotStyle -> RGBColor[1, 0.47, 0], 
+           ImageSize -> {550, 375}], $CellContext`selection$$ == 
+          "phase space", 
+          ParametricPlot[
+           Evaluate[{
+             First[
+              ReplaceAll[
+               $CellContext`x[$CellContext`t], $CellContext`sol1$]], 
+             First[
+              ReplaceAll[
+               $CellContext`xs[$CellContext`t], $CellContext`sol1$]]}], \
+{$CellContext`t, 100, 200}, ImageSize -> {550, 375}, PlotPoints -> 
+           1000], $CellContext`selection$$ == "Poincar\[EAcute] section", 
+          ListPlot[$CellContext`tbl$, ImageSize -> {550, 375}, PlotStyle -> {
+             PointSize[0.0075], 
+             RGBColor[1, 0, 0]}, PlotRange -> {{-5, 5}, {-5, 5}}]]], 
+      "Specifications" :> {{{$CellContext`\[CapitalGamma]$$, 1.8, 
+          "forcing amplitude"}, 0.2, 2.5, 0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`selection$$, 
+          "Poincar\[EAcute] section"}, {
+         "time series", "phase space", "Poincar\[EAcute] section"}}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`\[CapitalGamma]$$, \
+$CellContext`selection$$}}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{597., {242., 247.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->96466181,ExpressionUUID->"43d1a0d6-b6cd-4b14-bb20-09e014384182"]
+}, Open  ]],
+
+Cell["", "DetailsSection",ExpressionUUID->"40821d22-9be4-4e98-883f-dbbc17574779"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection",
+ CellID->37300074,ExpressionUUID->"2fb8bda2-222e-41b3-bc95-b556f4103e7e"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[
+   " Resize Images",ExpressionUUID->"3ab09d24-c74e-4fd8-ac16-d4e8ac25d807"]}],
+  
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.400189559249897*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages",
+ CellID->27723869,ExpressionUUID->"76bae47e-51ee-44a1-9fe1-364340170131"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Rotate and Zoom in 3D",ExpressionUUID->
+    "af539ae5-2b98-495c-ba61-f336dc231074"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D",
+ CellID->406485860,ExpressionUUID->"0901af1e-315c-4e49-87ae-efbcb761e736"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Drag Locators",ExpressionUUID->"0e43a9e4-175a-4559-9f10-bee47b8481c5"]}],
+  
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators",
+ CellID->529794868,ExpressionUUID->"36c68f4a-a147-4fd9-aace-970f65f0a471"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Create and Delete Locators",ExpressionUUID->
+    "d0321463-78f2-495a-a778-c4cfdb51a9a5"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators",
+ CellID->45152248,ExpressionUUID->"aca063bc-cfee-46cc-8d84-2a9434424cb1"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Slider Zoom",ExpressionUUID->"6e2a9ffd-0ee4-4401-b101-2e98cbccddac"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom",
+ CellID->78924504,ExpressionUUID->"49e4f750-d46b-4376-94a2-ccab3f21786f"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Gamepad Controls",ExpressionUUID->
+    "0ddf59e4-d4fc-49f6-96ef-6c5a82d109da"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls",
+ CellID->156773688,ExpressionUUID->"2dd875e4-0fca-4ec5-adf8-b4917c688103"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Automatic Animation",ExpressionUUID->
+    "bb306ca7-69a9-40bd-86c3-fd2c7595ed1e"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation",
+ CellID->102409884,ExpressionUUID->"3743dfa7-1048-4bbb-84d9-f99f2e0328e2"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Bookmark Animation",ExpressionUUID->
+    "221e8e03-f2f8-4dd5-8d68-9b9c0d3bf2e0"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation",
+ CellID->115645367,ExpressionUUID->"e460ad18-fd91-4de4-919e-fa735b002de0"]
+}, Open  ]],
+
+Cell["", "SearchTermsSection",ExpressionUUID->"3dac7aa0-873a-4a61-a3b1-3335e0e1f697"],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection",ExpressionUUID->"07fe7077-4967-440c-a01f-c84211929270"],
+
+Cell[TextData[ButtonBox["Duffing Differential Equation",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/DuffingDifferentialEquation.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.400189690374897*^9, 3.400189701499897*^9}},
+ CellID->50449513,ExpressionUUID->"2966fd07-4344-4ab2-a995-e249fdab93a1"],
+
+Cell[TextData[ButtonBox["Strange Attractor",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/StrangeAttractor.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.400189733703022*^9, 3.400189744953022*^9}},
+ CellID->474046081,ExpressionUUID->"ca3a9d0f-1fdc-467d-9a4e-b248f90f5498"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection",ExpressionUUID->"fa11bb5c-037a-4fe4-b942-b6730123d288"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Housam Binous",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Housam+Binous"],
+     None}],
+ " and ",
+ ButtonBox["Nasri Zakia",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Nasri+Zakia"], 
+    None}]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4001861883423696`*^9, 3.4001861913867474`*^9}, {
+   3.400189593765522*^9, 
+   3.400189606171772*^9}},ExpressionUUID->"1b093815-9830-43b8-a8f6-\
+a3cbba3327fd"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{833, 784},
+WindowMargins->{{17, Automatic}, {Automatic, 0}},
+Magnification->1.,
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[61697, 1288, 510, 12, 22, "ControlSuggestions",ExpressionUUID->"76bae47e-51ee-44a1-9fe1-364340170131",
+   CellTags->"ResizeImages",
+   CellID->27723869]},
+ "RotateAndZoomIn3D"->{
+  Cell[62210, 1302, 817, 19, 22, "ControlSuggestions",ExpressionUUID->"0901af1e-315c-4e49-87ae-efbcb761e736",
+   CellTags->"RotateAndZoomIn3D",
+   CellID->406485860]},
+ "DragLocators"->{
+  Cell[63030, 1323, 477, 14, 22, "ControlSuggestions",ExpressionUUID->"36c68f4a-a147-4fd9-aace-970f65f0a471",
+   CellTags->"DragLocators",
+   CellID->529794868]},
+ "CreateAndDeleteLocators"->{
+  Cell[63510, 1339, 775, 18, 22, "ControlSuggestions",ExpressionUUID->"aca063bc-cfee-46cc-8d84-2a9434424cb1",
+   CellTags->"CreateAndDeleteLocators",
+   CellID->45152248]},
+ "SliderZoom"->{
+  Cell[64288, 1359, 977, 23, 22, "ControlSuggestions",ExpressionUUID->"49e4f750-d46b-4376-94a2-ccab3f21786f",
+   CellTags->"SliderZoom",
+   CellID->78924504]},
+ "GamepadControls"->{
+  Cell[65268, 1384, 508, 12, 22, "ControlSuggestions",ExpressionUUID->"2dd875e4-0fca-4ec5-adf8-b4917c688103",
+   CellTags->"GamepadControls",
+   CellID->156773688]},
+ "AutomaticAnimation"->{
+  Cell[65779, 1398, 1551, 34, 22, "ControlSuggestions",ExpressionUUID->"3743dfa7-1048-4bbb-84d9-f99f2e0328e2",
+   CellTags->"AutomaticAnimation",
+   CellID->102409884]},
+ "BookmarkAnimation"->{
+  Cell[67333, 1434, 1021, 24, 22, "ControlSuggestions",ExpressionUUID->"e460ad18-fd91-4de4-919e-fa735b002de0",
+   CellTags->"BookmarkAnimation",
+   CellID->115645367]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 70385, 1524},
+ {"RotateAndZoomIn3D", 70571, 1528},
+ {"DragLocators", 70758, 1532},
+ {"CreateAndDeleteLocators", 70951, 1536},
+ {"SliderZoom", 71141, 1540},
+ {"GamepadControls", 71323, 1544},
+ {"AutomaticAnimation", 71514, 1548},
+ {"BookmarkAnimation", 71708, 1552}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 216, 4, 76, "DemoTitle",ExpressionUUID->"f4006318-2eba-449c-bb1d-50a9411b0017"],
+Cell[786, 28, 88, 0, 301, "InitializationSection",ExpressionUUID->"7ce9315a-213b-49ba-9a1b-75866328db2e"],
+Cell[CellGroupData[{
+Cell[899, 32, 84, 0, 205, "ManipulateSection",ExpressionUUID->"a622c211-e148-4ed7-91f0-96e4118c28d3"],
+Cell[CellGroupData[{
+Cell[1008, 36, 9677, 226, 430, "Input",ExpressionUUID->"a96f7f03-482a-4452-a8aa-a595676f82f0"],
+Cell[10688, 264, 5475, 106, 502, "Output",ExpressionUUID->"46261094-7a02-46ec-8674-ec3ef42f3aba",
+ CellID->18831665]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16209, 376, 91, 0, 181, "ManipulateCaptionSection",ExpressionUUID->"4e5f5eb5-5718-440e-b526-43aab53c4921"],
+Cell[16303, 378, 4053, 91, 109, "ManipulateCaption",ExpressionUUID->"ea1be260-8be4-4d71-b240-d8a34f34575c"],
+Cell[20359, 471, 2311, 38, 71, "ManipulateCaption",ExpressionUUID->"e0a29789-093e-4520-96e7-fe6e2c2799de",
+ CellID->1158373419]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22707, 514, 83, 0, 179, "ThumbnailSection",ExpressionUUID->"438ddf63-c8f0-4808-bc35-3a042569bea8"],
+Cell[22793, 516, 5551, 107, 501, "Output",ExpressionUUID->"005ec3ea-6139-4803-9764-ff2397c1a294",
+ CellID->136599181]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28381, 628, 83, 0, 149, "SnapshotsSection",ExpressionUUID->"07d3df0c-8c91-44e1-bcc1-94a4dfb5f496"],
+Cell[28467, 630, 5476, 106, 501, "Output",ExpressionUUID->"02f5b541-b19a-4a49-926f-247c30341f73",
+ CellID->510186445],
+Cell[33946, 738, 5476, 106, 501, "Output",ExpressionUUID->"867d963f-a6f5-490c-a4c7-bd4ccb7916f9",
+ CellID->352475858],
+Cell[39425, 846, 5538, 107, 501, "Output",ExpressionUUID->"3c6703bb-628f-4eff-bfa0-6971fa077cfe",
+ CellID->65599392],
+Cell[44966, 955, 5476, 106, 501, "Output",ExpressionUUID->"d919d2d6-eb02-40b2-890e-01d6eedfbc61",
+ CellID->108278870],
+Cell[50445, 1063, 5476, 106, 501, "Output",ExpressionUUID->"58defabe-3c1a-4fb9-bb82-f98ef3f12972",
+ CellID->439591879],
+Cell[55924, 1171, 5538, 107, 501, "Output",ExpressionUUID->"43d1a0d6-b6cd-4b14-bb20-09e014384182",
+ CellID->96466181]
+}, Open  ]],
+Cell[61477, 1281, 81, 0, 332, "DetailsSection",ExpressionUUID->"40821d22-9be4-4e98-883f-dbbc17574779"],
+Cell[CellGroupData[{
+Cell[61583, 1285, 111, 1, 108, "ControlSuggestionsSection",ExpressionUUID->"2fb8bda2-222e-41b3-bc95-b556f4103e7e",
+ CellID->37300074],
+Cell[61697, 1288, 510, 12, 22, "ControlSuggestions",ExpressionUUID->"76bae47e-51ee-44a1-9fe1-364340170131",
+ CellTags->"ResizeImages",
+ CellID->27723869],
+Cell[62210, 1302, 817, 19, 22, "ControlSuggestions",ExpressionUUID->"0901af1e-315c-4e49-87ae-efbcb761e736",
+ CellTags->"RotateAndZoomIn3D",
+ CellID->406485860],
+Cell[63030, 1323, 477, 14, 22, "ControlSuggestions",ExpressionUUID->"36c68f4a-a147-4fd9-aace-970f65f0a471",
+ CellTags->"DragLocators",
+ CellID->529794868],
+Cell[63510, 1339, 775, 18, 22, "ControlSuggestions",ExpressionUUID->"aca063bc-cfee-46cc-8d84-2a9434424cb1",
+ CellTags->"CreateAndDeleteLocators",
+ CellID->45152248],
+Cell[64288, 1359, 977, 23, 22, "ControlSuggestions",ExpressionUUID->"49e4f750-d46b-4376-94a2-ccab3f21786f",
+ CellTags->"SliderZoom",
+ CellID->78924504],
+Cell[65268, 1384, 508, 12, 22, "ControlSuggestions",ExpressionUUID->"2dd875e4-0fca-4ec5-adf8-b4917c688103",
+ CellTags->"GamepadControls",
+ CellID->156773688],
+Cell[65779, 1398, 1551, 34, 22, "ControlSuggestions",ExpressionUUID->"3743dfa7-1048-4bbb-84d9-f99f2e0328e2",
+ CellTags->"AutomaticAnimation",
+ CellID->102409884],
+Cell[67333, 1434, 1021, 24, 22, "ControlSuggestions",ExpressionUUID->"e460ad18-fd91-4de4-919e-fa735b002de0",
+ CellTags->"BookmarkAnimation",
+ CellID->115645367]
+}, Open  ]],
+Cell[68369, 1461, 85, 0, 152, "SearchTermsSection",ExpressionUUID->"3dac7aa0-873a-4a61-a3b1-3335e0e1f697"],
+Cell[CellGroupData[{
+Cell[68479, 1465, 86, 0, 126, "RelatedLinksSection",ExpressionUUID->"07fe7077-4967-440c-a01f-c84211929270"],
+Cell[68568, 1467, 362, 7, 22, "RelatedLinks",ExpressionUUID->"2966fd07-4344-4ab2-a995-e249fdab93a1",
+ CellID->50449513],
+Cell[68933, 1476, 340, 7, 22, "RelatedLinks",ExpressionUUID->"ca3a9d0f-1fdc-467d-9a4e-b248f90f5498",
+ CellID->474046081]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69310, 1488, 80, 0, 136, "AuthorSection",ExpressionUUID->"fa11bb5c-037a-4fe4-b942-b6730123d288"],
+Cell[69393, 1490, 584, 18, 22, "Author",ExpressionUUID->"1b093815-9830-43b8-a8f6-a3cbba3327fd"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

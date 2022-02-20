@@ -1,0 +1,1025 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Lab3}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{verbatim}
+Instructor(s): Dr. Kenneth Duru
+First Semester 2019
+Mathematical Sciences Institute
+Australian National University
+\end{verbatim}
+
+\section{Math3511/6111, Scientific
+Computing}\label{math35116111-scientific-computing}
+
+This Lab book must be submitted by \textbf{6th May 5pm}. Late
+Submissions will incur a 5\% penalty per working day. Assignment
+submissions will close on the \textbf{13th May 5pm}. Submissions after
+this time will be invalid.
+
+\section{Lab 3: Interpolation}\label{lab-3-interpolation}
+
+    \subsection{A. Background}\label{a.-background}
+
+\subsubsection{A1. Summary}\label{a1.-summary}
+
+In this lab you will explore the efficient evaluation of the polynomial
+interpolant using the barycentric formula. You will learn about the
+barycentric formula and Scipy routine for barycentric interpolation.
+Background required are the lectures in the file Interpolation on Wattle
+up to the Lagrange formula.
+
+The barycentric formula will be derived in the tutorial, alternatively,
+you can read up on it yourself using a search of the term barycentric
+formula.
+
+Your tasks are to implement the barycentric formula in Python. You will
+measure the performance using the Python timeit tool. Finally, you will
+provide code which utilises the Scipy barycentric interpolation codes.
+Compare the performance of your codes and the Scipy codes. For extra
+points provide some discussion on the difference in performance of the
+Scipy and your code.
+
+\begin{itemize}
+\item
+  starting point: Lagrangian interpolation formula for the data
+  \(x_i, y_i\) with \(i=0,\ldots,n\) \[p(x) = \sum_{j=0}^n y_j l_j(x)\]
+\item
+  barycentric interpolation formula
+  \[p(x) = \frac{\sum_{j=0}^n y_j \frac{c_j}{x-x_j}}{\sum_{j=0}^n \frac{c_j}{x-x_j}}\]
+  which holds for \(x\neq x_j\) for \(j=0,\ldots,n\)
+\end{itemize}
+
+For those who would like to get faster code we have included some
+\textbf{non-mandatory} material and coding ideas using Cython. Feel free
+to talk to the tutors to get further information about Cython. However,
+the Cython parts will not be assessed. Note that Cython might not work
+on the lab computers. Typically, you will install it yourself with
+Anaconda. However, you will require to use a C compiler which may cause
+additional problems on Macs and Windows computers.
+
+    \subsubsection{A2. Theory (by tutors)}\label{a2.-theory-by-tutors}
+
+\begin{itemize}
+\item
+  Lagrangian functions given in lecture satisfy
+  \[l_j(x) = w(x) \cdot \frac{c_j}{x-x_j}\] for \(x\neq x_j\) and
+  \[w(x) = \prod_{k=0}^n (x-x_k)\] and
+  \(c_j = \left(\prod_{k=0}^n (x_j-x_k)\right)^{-1}\)
+\item
+  Lagrangian functions satisfy for all \(x\) \[\sum_{j=0}^n l_j(x) = 1\]
+\item
+  Using these two properties of \(l_j\) one then gets for the
+  interpolant for \(x\neq x_j\)
+  \[p(x) = \frac{\sum_{j=0}^n y_j w(x) \frac{c_j}{x-x_j}}{\sum_{j=0}^n w(x) \frac{c_j}{x-x_j}}\]
+  from which the barycentric formula follows directly
+\end{itemize}
+
+    \subsubsection{A3. Non-mandatory part on Cython (by tutors, on demand
+only)}\label{a3.-non-mandatory-part-on-cython-by-tutors-on-demand-only}
+
+\begin{itemize}
+\tightlist
+\item
+  difference between Python and C:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Python is interpreted which C is compiled
+  \item
+    Python uses dynamical typing while C uses static typing
+  \end{itemize}
+\item
+  Cython is basically Python code
+
+  \begin{itemize}
+  \tightlist
+  \item
+    which is converted to C and then compiled
+  \item
+    which includes a possibility of static typing
+  \end{itemize}
+\item
+  Usage of Cython is easy with the \%\%cython magic of jupyter notebooks
+
+  \begin{itemize}
+  \tightlist
+  \item
+    load cython at the beginning with
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{%}\NormalTok{load_ext cython}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    define a Cython cell with
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{%%}\NormalTok{cython}
+\end{Highlighting}
+\end{Shaded}
+
+  (\texttt{\%\%cython\ -a} for annotation)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    use ordinary Python code in the Cython cell
+  \item
+    add static typing with commmands like
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cdef }\BuiltInTok{int}\NormalTok{ i,n}
+\NormalTok{cdef numpy.ndarray[numpy.float64_t, ndim}\OperatorTok{=}\DecValTok{1}\NormalTok{] x}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \item
+    import numpy data for Cython and Python by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy    }
+\NormalTok{cimport numpy}
+\end{Highlighting}
+\end{Shaded}
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{load\PYZus{}ext} cython
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{\PYZpc{}}\PY{o}{\PYZpc{}}\PY{n}{cython} \PY{o}{\PYZhy{}}\PY{n}{a}
+        \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{} Example of a Cython cell (tutors)}
+        
+        \PY{k}{import} \PY{n+nn}{numpy}
+        \PY{k}{cimport} \PY{n+nn}{numpy}
+        
+        \PY{k}{def} \PY{n+nf}{addC}\PY{p}{(}\PY{n}{numpy}\PY{o}{.}\PY{n}{ndarray}\PY{p}{[}\PY{n}{numpy}\PY{o}{.}\PY{n}{float64\PYZus{}t}\PY{p}{,}\PY{n}{ndim}\PY{o}{=}\PY{l+m+mf}{1}\PY{p}{]} \PY{n}{x}\PY{p}{,} \PY{n}{numpy}\PY{o}{.}\PY{n}{ndarray}\PY{p}{[}\PY{n}{numpy}\PY{o}{.}\PY{n}{float64\PYZus{}t}\PY{p}{,}\PY{n}{ndim}\PY{o}{=}\PY{l+m+mf}{1}\PY{p}{]} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+            \PY{c}{\PYZsh{} Python code with static typing, compiled}
+            \PY{k}{cdef} \PY{k+kt}{int} \PY{n+nf}{i}
+            \PY{k}{cdef} \PY{k+kt}{int} \PY{n+nf}{n} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mf}{0}\PY{p}{]}
+            \PY{k}{cdef} \PY{k+kt}{numpy}.\PY{k+kt}{ndarray}[\PY{k+kt}{numpy}.\PY{n+nf}{float64\PYZus{}t}\PY{p}{,}\PY{n+nf}{ndim}\PY{o}{=}\PY{l+m+mf}{1}\PY{p}{]} \PY{n}{z} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+            \PY{k}{return} \PY{n}{z}
+            
+        \PY{k}{def} \PY{n+nf}{addP}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{:}   \PY{c}{\PYZsh{} Python code with dynamic typing, compiled}
+            \PY{n}{n} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mf}{0}\PY{p}{]}
+            \PY{n}{z} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+            \PY{k}{return} \PY{n}{z}
+        
+        \PY{n}{x} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{11}\PY{p}{,} \PY{l+m+mf}{100}\PY{p}{)}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,} \PY{l+m+mf}{17}\PY{p}{,} \PY{l+m+mf}{2}\PY{p}{)}\PY{p}{)}
+        \PY{n}{z} \PY{o}{=} \PY{n}{addC}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+        \PY{k}{print}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[   5.   28.  102.]
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} <IPython.core.display.HTML object>
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} timing (tutors)}
+         \PY{k+kn}{from} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{random} \PY{k}{import} \PY{n}{random}
+         \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{l+m+mi}{20000}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{l+m+mi}{20000}\PY{p}{)}
+         \PY{o}{\PYZpc{}}\PY{k}{timeit} z = addP(x,y)
+         \PY{o}{\PYZpc{}}\PY{k}{timeit} z = addC(x,y)
+         \PY{o}{\PYZpc{}}\PY{k}{timeit} z = x+y    \PYZsh{} numpy code
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+18.4 ms ± 148 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+151 µs ± 487 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+37.3 µs ± 2.96 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+    \end{Verbatim}
+
+    \subsection{B. Labbook -\/- here comes the part which you include or
+modify
+(student)}\label{b.-labbook----here-comes-the-part-which-you-include-or-modify-student}
+
+    \subsubsection{B1. Lagrange interpolation (student)
+{[}40pts{]}}\label{b1.-lagrange-interpolation-student-40pts}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In the next 2 cells you find an implementation of the Lagrange
+  interpolation formula and a timing and accuracy study. Carefully read
+  through the code until you understand what is going on. Write a short
+  description on what the various procedures do. Then run the next cell
+  multiple times. Discuss what you observe in terms of accuracy and
+  time. Develop a simple model for the time spent in the various
+  routines. Does this explain the growth of time with increasing n?
+\end{enumerate}
+
+Note that you can improve the performance of the Lagrangian function by
+precomputing the (constant) denominator. How much does this save you?
+
+Write your report (1/2 page) here:
+
+\subsubsection{My report}\label{my-report}
+
+Your discussion goes here
+
+    what the various procedures do:
+
+In the following code:
+
+First, we input the data points of exponential function with equal.
+
+Second, we define the caridnal function(langrangua function) by the
+formula: \[l_j(x) = w(x) \cdot \frac{c_j}{x-x_j}\] for \(x\neq x_j\) and
+\(w(x) = \prod_{k=0 k\neq j}^n (x-x_k)\) and
+\(c_j = \left(\prod_{k=0}^n (x_j-x_k)\right)^{-1}\)
+
+Third, we perfrom lagrangian interpolation
+\[p(x) = \sum_{j=0}^n y_j l_j(x)\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{numpy}
+        \PY{k+kn}{import} \PY{n+nn}{pylab} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{}data}
+        \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{5}
+        \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+        \PY{n}{f} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{numpy}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{o}{*}\PY{n}{x}\PY{p}{)}
+        \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{\PYZsh{} improved Lagrangian function}
+        \PY{l+s+sd}{d=numpy.zeros(n)}
+        \PY{l+s+sd}{for i in range(n):}
+        \PY{l+s+sd}{    if (i != j):}
+        \PY{l+s+sd}{        d[j] *= (xpts[j]\PYZhy{}xpts[i])}
+        \PY{l+s+sd}{            }
+        \PY{l+s+sd}{def l(x, xpts, j):}
+        \PY{l+s+sd}{    y = 1.0}
+        \PY{l+s+sd}{    d = 1.0}
+        \PY{l+s+sd}{    n = xpts.shape[0]}
+        \PY{l+s+sd}{    for i in range(n):}
+        \PY{l+s+sd}{        if (i != j):}
+        \PY{l+s+sd}{            d *= (xpts[j]\PYZhy{}xpts[i])}
+        \PY{l+s+sd}{    for i in range(n):}
+        \PY{l+s+sd}{        if (i != j): }
+        \PY{l+s+sd}{            y *= (x\PYZhy{}xpts[i])}
+        \PY{l+s+sd}{    y=y/d[j]}
+        \PY{l+s+sd}{    return y}
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        
+        \PY{c+c1}{\PYZsh{} Lagrangian function}
+        \PY{k}{def} \PY{n+nf}{l}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{xpts}\PY{p}{,} \PY{n}{j}\PY{p}{)}\PY{p}{:}
+            \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{1.0}
+            \PY{n}{n} \PY{o}{=} \PY{n}{xpts}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{!=} \PY{n}{j}\PY{p}{)}\PY{p}{:} 
+                    \PY{n}{y} \PY{o}{*}\PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{xpts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{xpts}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{xpts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+            \PY{k}{return} \PY{n}{y}
+        
+        \PY{c+c1}{\PYZsh{} Lagrangian interpolant}
+        \PY{k}{def} \PY{n+nf}{p}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{xpts}\PY{o}{=}\PY{n}{xpts}\PY{p}{,} \PY{n}{ypts}\PY{o}{=}\PY{n}{ypts}\PY{p}{,} \PY{n}{l}\PY{o}{=}\PY{n}{l}\PY{p}{)}\PY{p}{:}
+            \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{0.0}
+            \PY{n}{n} \PY{o}{=} \PY{n}{xpts}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                \PY{n}{y} \PY{o}{+}\PY{o}{=} \PY{n}{ypts}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{l}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{j}\PY{p}{)}
+            \PY{k}{return} \PY{n}{y}
+        
+        \PY{c+c1}{\PYZsh{} plot result}
+        \PY{n}{xg} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{128}\PY{p}{)}
+        \PY{n}{yg} \PY{o}{=} \PY{n}{p}\PY{p}{(}\PY{n}{xg}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xg}\PY{p}{,}\PY{n}{yg}\PY{p}{,}\PY{n}{xg}\PY{p}{,}\PY{n}{f}\PY{p}{(}\PY{n}{xg}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} timing and accuracy study }
+         \PY{k+kn}{from} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{random} \PY{k}{import} \PY{n}{random}
+         \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in}  \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{17}\PY{p}{,} \PY{l+m+mi}{33}\PY{p}{,} \PY{l+m+mi}{65}\PY{p}{)}\PY{p}{:}
+             \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+             \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+         
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{n}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ p(x) \PYZhy{} f(x) = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{p}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{ypts}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+             
+             \PY{o}{\PYZpc{}}\PY{k}{timeit} y = p(x,xpts,ypts)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.9289107503866519 9.242551289317041e-05
+n=  3  p(x) - f(x) =  -0.05925835920813797
+15 µs ± 465 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+n=  5  p(x) - f(x) =  -0.024831423960763148
+42.7 µs ± 1.61 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+n=  9  p(x) - f(x) =  -0.0005053421039129846
+142 µs ± 24.2 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+n=  17  p(x) - f(x) =  8.360079957676122e-10
+508 µs ± 34 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+n=  33  p(x) - f(x) =  6.209022553917143e-14
+1.98 ms ± 199 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+n=  65  p(x) - f(x) =  8.501533292017865e-08
+6.8 ms ± 274 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+    \end{Verbatim}
+
+    performance in time
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k+kn}{import} \PY{n+nn}{timeit} \PY{k}{as} \PY{n+nn}{ti}
+         \PY{k+kn}{import} \PY{n+nn}{time}
+         \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         \PY{n}{N}\PY{o}{=}\PY{l+m+mi}{10}
+         \PY{n}{T}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{n}{Narr}\PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{199}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{Narr}\PY{p}{:}
+             \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+             \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+             \PY{n}{y} \PY{o}{=} \PY{n}{p}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{ypts}\PY{p}{)}
+             \PY{n}{T}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ti}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y = p(x,xpts,ypts)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{n}{setup}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import p,x,xpts,ypts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{number}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Narr}\PY{p}{,}\PY{n}{T}\PY{p}{)}
+         \PY{n}{n}\PY{o}{=}\PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{202}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{4e\PYZhy{}5}\PY{o}{*}\PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.2702047026725797 0.06706808196927055
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:9: DeprecationWarning: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer.
+  if \_\_name\_\_ == '\_\_main\_\_':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} Text(0,0.5,'time')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    performance in accuracy
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{y}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{Narr}\PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{78}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{Narr}\PY{p}{:}
+             \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+             \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+             \PY{n}{yy} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{p}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{ypts}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+             \PY{n}{y}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{yy}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Narr}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yscale}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{log}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.808336483651065 0.0003086307941147965
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:9: DeprecationWarning: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer.
+  if \_\_name\_\_ == '\_\_main\_\_':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} Text(0,0.5,'error')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We observe that:
+
+The first plot show us that T=\(4\times10^{-5} n^2\) is a good fit of
+the relationship between calculation time and n. And we can see that the
+calculation time is of order \(n^2\).
+
+The second plot show us that the error reaches its minimum at around 27,
+which means the accuaracy of the calculation is best when n is around
+27.
+
+    a simple model for the time spent in the various routines:
+
+The time spent in every calculate langrangian function needs n division
+and n-1 multiplication.
+
+The time spent in intepolation needs to calculate n+1 langrangian
+function.
+
+The total calculation time is roughly \(2n^2 t_0\), where \(t_0\) is the
+single calculation time for multiplication or division.
+
+    By precomputing the (constant) denominator:
+
+If we want to calculate the intepolation function in a region of x. Then
+when calculating the langrangian function for all values of x, the
+constant denominators are not changed for every x, so we can calculate
+them in advance. Then the time spent in calculate langrangian function
+will be roughly half beacuse we do not need to do n division but just 1.
+Hence the whole calculating time will be half compared to the previous
+method.
+
+    \subsubsection{\texorpdfstring{B2. Performance improvement using Cython
+(\textbf{not assessed},
+student)}{B2. Performance improvement using Cython (not assessed, student)}}\label{b2.-performance-improvement-using-cython-not-assessed-student}
+
+Most of the time spent in Lagrangian interpolation is spent in
+evaluating the Lagrange functions l(x,y,j). * Can you confirm this with
+your model?
+
+Use Cython to improve performance, first by only including compilation
+and in a second step by adding static typing. Redo the timings by using
+the two new Cython variants of the Lagrange functions. Compare the
+performance with the pure Python performance. Note that you do not need
+to change the code for the interpolation function p.
+
+\subsubsection{My report}\label{my-report}
+
+your discussion of the results and your code goes here
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{\PYZsh{} Your Cython code goes here for the compiling only variant (not assessed)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{c+c1}{\PYZsh{} Your timing code goes here (not assessed)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{c+c1}{\PYZsh{} Your Cython code goes here for the compiling + static typing code (not assessed)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{c+c1}{\PYZsh{} Your timing code goes here (not assessed)}
+\end{Verbatim}
+
+    \subsubsection{B3. Barycentric formula (student)
+{[}30pts{]}}\label{b3.-barycentric-formula-student-30pts}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Repeat the performance study from point 1 replacing the Lagrange
+  formula with the barycentric formula. Observe how the performance
+  changes. Use a pure Python implementation. Your results are to be
+  included here like in point 1.
+\end{enumerate}
+
+Note that here there are two components to the performance * for the
+computation of the coefficients \(c_j\) * for the evaluation of the
+polynomial with given \(c_j\)
+
+    what the various procedures do:
+
+In the following code:
+
+First, we input the data points of exponential function with equal.
+
+Second, we calculate \(c_j\) by the formula:
+\(c_j = \left(\prod_{k=0}^n (x_j-x_k)\right)^{-1}\)
+
+Third, we perfrom Barycentric formula:
+\[p(x) = \frac{\sum_{j=0}^n y_j \frac{c_j}{x-x_j}}{\sum_{j=0}^n \frac{c_j}{x-x_j}}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         \PY{k+kn}{import} \PY{n+nn}{numpy}
+         \PY{k+kn}{import} \PY{n+nn}{pylab} \PY{k}{as} \PY{n+nn}{plt}
+         
+         \PY{c+c1}{\PYZsh{}data}
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{5}
+         \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+         \PY{n}{f} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{numpy}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{o}{*}\PY{n}{x}\PY{p}{)}
+         \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}c\PYZus{}j}
+         \PY{k}{def} \PY{n+nf}{c}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{xpts}\PY{p}{,} \PY{n}{j}\PY{p}{)}\PY{p}{:}
+             \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{1.}
+             \PY{n}{n} \PY{o}{=} \PY{n}{xpts}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{!=} \PY{n}{j}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{y} \PY{o}{*}\PY{o}{=} \PY{p}{(}\PY{n}{xpts}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{xpts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{y}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{y}
+             \PY{k}{return} \PY{n}{y}
+         
+         
+         
+         \PY{c+c1}{\PYZsh{} Barcentric interpolant}
+         \PY{k}{def} \PY{n+nf}{b}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{xpts}\PY{o}{=}\PY{n}{xpts}\PY{p}{,} \PY{n}{ypts}\PY{o}{=}\PY{n}{ypts}\PY{p}{,} \PY{n}{l}\PY{o}{=}\PY{n}{l}\PY{p}{)}\PY{p}{:}
+             \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{0.0}
+             \PY{n}{d} \PY{o}{=} \PY{l+m+mf}{0.0}
+             \PY{n}{n} \PY{o}{=} \PY{n}{xpts}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{cc} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{cc}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{c}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{j}\PY{p}{)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{y} \PY{o}{+}\PY{o}{=} \PY{n}{ypts}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{cc}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{xpts}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{d} \PY{o}{+}\PY{o}{=} \PY{n}{cc}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{xpts}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+             \PY{n}{y} \PY{o}{=} \PY{n}{y}\PY{o}{/}\PY{n}{d}
+             \PY{k}{return} \PY{n}{y}
+         
+         \PY{c+c1}{\PYZsh{} plot result}
+         \PY{n}{xg} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{128}\PY{p}{)}
+         \PY{n}{yg} \PY{o}{=} \PY{n}{b}\PY{p}{(}\PY{n}{xg}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xg}\PY{p}{,}\PY{n}{yg}\PY{p}{,}\PY{n}{xg}\PY{p}{,}\PY{n}{f}\PY{p}{(}\PY{n}{xg}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:32: RuntimeWarning: divide by zero encountered in true\_divide
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:34: RuntimeWarning: divide by zero encountered in true\_divide
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:35: RuntimeWarning: invalid value encountered in true\_divide
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} timing and accuracy study }
+         
+         \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in}  \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{17}\PY{p}{,} \PY{l+m+mi}{33}\PY{p}{,} \PY{l+m+mi}{65}\PY{p}{)}\PY{p}{:}
+             \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+             \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+         
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{n}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ b(x) \PYZhy{} f(x) = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{b}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{ypts}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+             
+             \PY{o}{\PYZpc{}}\PY{k}{timeit} y = b(x,xpts,ypts)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.0650774212793307 0.521641758660128
+n=  3  b(x) - f(x) =  0.29323335918847604
+26.4 µs ± 1.8 µs per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+n=  5  b(x) - f(x) =  0.08797347251311394
+51.2 µs ± 6.03 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+n=  9  b(x) - f(x) =  0.001310196727692059
+128 µs ± 25.8 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+n=  17  b(x) - f(x) =  -5.162064109498488e-10
+322 µs ± 16.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+n=  33  b(x) - f(x) =  4.667377595524158e-13
+1.16 ms ± 102 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+n=  65  b(x) - f(x) =  1.0048724943256815e-06
+4.31 ms ± 33.9 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+    \end{Verbatim}
+
+    performance in time
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         \PY{n}{T}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{n}{Narr}\PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{199}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{Narr}\PY{p}{:}
+             \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+             \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+             \PY{n}{y} \PY{o}{=} \PY{n}{b}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{ypts}\PY{p}{)}
+             \PY{n}{T}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ti}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y = b(x,xpts,ypts)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{n}{setup}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from \PYZus{}\PYZus{}main\PYZus{}\PYZus{} import b,x,xpts,ypts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{number}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Narr}\PY{p}{,}\PY{n}{T}\PY{p}{)}
+         \PY{n}{n}\PY{o}{=}\PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{201}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{2.1e\PYZhy{}5}\PY{o}{*}\PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.761234354879148 0.0004943120555604486
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:6: DeprecationWarning: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer.
+  
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} Text(0,0.5,'time')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    performance in accuracy
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{y}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{Narr}\PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{78}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{Narr}\PY{p}{:}
+             \PY{n}{xpts} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}
+             \PY{n}{ypts} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{xpts}\PY{p}{)}
+             \PY{n}{yy} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{b}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{xpts}\PY{p}{,}\PY{n}{ypts}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+             \PY{n}{y}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{yy}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Narr}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yscale}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{log}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.15288993785390115 0.21677412231879992
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}YYX\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:9: DeprecationWarning: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer.
+  if \_\_name\_\_ == '\_\_main\_\_':
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:} Text(0,0.5,'error')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_31_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We observe that:
+
+The first plot show us that T=\(2.1\times10^{-5} n^2\) is a good fit of
+the relationship between calculation time and n. And we can see that the
+calculation time is of order \(n^2\).
+
+The second plot show us that the error reaches its minimum at around 27.
+The accuaracy of the calculation is best when n is around 27.
+
+    Comparison between lagrangian formula with baycentric formula:
+
+For the computation of the coefficients \(c_j\): there are n
+multiplication and 1 division.
+
+For the evaluation of the intepolation: we have to calculate n+1 \(c_j\)
+
+The total calculation time is roughly \(n^2 t_0\). The time required for
+computation is nearly the half the time of time of previous method.
+
+The performance of accuracy has not changed much.
+
+    \subsubsection{B4. Barycentric formula with Cython (student, not
+assessed)}\label{b4.-barycentric-formula-with-cython-student-not-assessed}
+
+Repeat the performance study from point 2 for the barycentric formula,
+again considering both the effect of compilation and of static typing
+separately.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
